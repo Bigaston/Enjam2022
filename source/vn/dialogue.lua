@@ -13,20 +13,16 @@ class('Dialogue').extends()
 function Dialogue:init(dialogue, opened) 
   Dialogue.super.init(self)
 
-  self.currentImg = nil
-
   if type(dialogue) == "string" then
     self.tableDialogue = {dialogue}
     self.text = dialogue
   else
     self.tableDialogue = dialogue
     self.text = dialogue[1].text
-
-    if dialogue[1].image ~= nil then
-      self.currentImg = gfx.image.new(dialogue[1].image)
-    end
   end
 
+  self.currentImg = nil
+  self.currentAudio = nil
   self.currentStep = 1
 
   self.textAnimation = false
@@ -57,6 +53,26 @@ function Dialogue:animateText()
   self.textDisplayChar = 0
   self.textDisplay = false
   self.textAnimation = true
+
+  -- Choose the right image
+  self.currentImg = nil
+  if self.tableDialogue[self.currentStep].image ~= nil then
+    self.currentImg = gfx.image.new(self.tableDialogue[self.currentStep].image)
+  end
+
+  -- Play sound from dialogue
+  if self.currentAudio ~= nil then
+    self.currentAudio:stop()
+  end
+
+
+  if self.tableDialogue[self.currentStep].audio ~= nil then
+    self.currentAudio = pd.sound.sampleplayer.new(self.tableDialogue[self.currentStep].audio)
+    print(self.currentAudio)
+    self.currentAudio:play()
+  else
+    self.currentAudio = nil
+  end
 end
 
 function Dialogue:update()
@@ -76,7 +92,7 @@ function Dialogue:update()
       else
         self.textElapsedFrame = frameBetweenText
       end
-      
+
       self.textDisplayChar +=1
 
       if self.textDisplayChar == #self.text then
@@ -110,12 +126,6 @@ function Dialogue:update()
       else
         self.currentStep+=1
         self.text = self.tableDialogue[self.currentStep].text
-        
-        if self.tableDialogue[self.currentStep].image ~= nil then
-          self.currentImg = gfx.image.new(self.tableDialogue[self.currentStep].image)
-        else
-          self.currentImg = nil
-        end
 
         self:animateText()
       end

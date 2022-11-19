@@ -9,7 +9,7 @@ local backgroundX = 0
 
 function initVN()
   local fantaDialogues = {
-    {text = "Salut ma couille, c'est Fanta\nJ'aime les NFT", image = "images/vn/fanta.png", speed = 1},
+    {text = "Salut ma couille, c'est Fanta\nJ'aime les NFT", image = "images/vn/fanta.png", speed = 1, audio = "sounds/vn/fanta1"},
     {text = "Tu veux payer sur VVFrance\navec moi?", image = "images/vn/fanta.png", speed = 3}
   }
   dialogue = Dialogue(fantaDialogues, false)
