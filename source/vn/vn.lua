@@ -8,7 +8,11 @@ local backgroundImage = gfx.image.new("images/vn/cinematic_background")
 local backgroundX = 0
 
 function initVN()
-  dialogue = Dialogue("Salut ma couille, c'est Fanta\nJ'aime les NFT", false)
+  local fantaDialogues = {
+    "Salut ma couille, c'est Fanta\nJ'aime les NFT",
+    "Tu veux payer sur VVFrance\navec moi?"
+  }
+  dialogue = Dialogue(fantaDialogues, false)
   dialogue:open()
 end
 

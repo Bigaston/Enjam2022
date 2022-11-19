@@ -12,7 +12,15 @@ class('Dialogue').extends()
 -- Init the dialogue class
 function Dialogue:init(text, opened) 
   Dialogue.super.init(self)
-  self.text = text
+  if type(text) == "string" then
+    self.tableText = {text}
+    self.text = text
+  else
+    self.tableText = text
+    self.text = text[1]
+  end
+
+  self.currentText = 1
 
   self.textAnimation = false
   self.textDisplay = false
@@ -62,6 +70,32 @@ function Dialogue:update()
       self.textElapsedFrame-=1
     end
   end
+
+  if pd.buttonJustPressed(pd.kButtonA) then
+    if self.openAnimation then
+      self.openAnimation = false
+      self.opened = true
+
+      self.textAnimation = false
+      self.textDisplay = true
+    elseif self.textAnimation then
+      self.textAnimation = false
+      self.textDisplay = true
+    else
+      if self.currentText == #self.tableText then
+        self.opened = false
+        self.textDisplay = false
+        if self.closeCallback ~= nil then
+
+          self.closeCallback()
+        end
+      else
+        self.currentText+=1
+        self.text = self.tableText[self.currentText]
+        self:animateText()
+      end
+    end
+  end
 end
 
 function Dialogue:draw()
@@ -75,13 +109,14 @@ function Dialogue:draw()
     gfx.fillRoundRect(2, 160, 396, 78, 5)
     gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(2, 160, 396, 78, 5)
+
+    gfx.drawText("Ⓐ", 375, 215)
   end
 
   if self.textAnimation then
     gfx.drawText(string.sub(self.text, 0, self.textDisplayChar), 5, 163)
   elseif self.textDisplay then
     gfx.drawText(self.text, 5, 163)
-
   end
   -- gfx.drawText(self.timerX.value, 10, 10)
 end
