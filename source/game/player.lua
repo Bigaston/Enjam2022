@@ -11,6 +11,7 @@ function Player:init(x, y, image)
     self.currentRotation = 0
     self.rotationModifier = 5
     self:setImage(image)
+    self:setCollideRect(0, 0, self:getSize())
 end
 
 function Player:manageRotation()
@@ -20,6 +21,7 @@ function Player:manageRotation()
             self.currentRotation += 360
         end
         self:setImage(self.currentImage:rotatedImage(360 - self.currentRotation))
+        self:setCollideRect(0, 0, self:getSize())
     end
     if pd.buttonIsPressed(pd.kButtonLeft) then
         self.currentRotation += self.rotationModifier
@@ -27,6 +29,7 @@ function Player:manageRotation()
             self.currentRotation -= 360
         end
         self:setImage(self.currentImage:rotatedImage(360 - self.currentRotation))
+        self:setCollideRect(0, 0, self:getSize())
     end
 end
 
@@ -52,8 +55,8 @@ function Player:manageMovement()
     end
     
     -- Check if the player will be out of bounds, don't move if true
-    if (x - playerSpriteSize/2 > minimumZoneX and x + playerSpriteSize/2 < maximumZoneX 
-        and y - playerSpriteSize/2 > minimumZoneY and y + playerSpriteSize/2 < maximumZoneY) then
+    if (x - self:getSize()/2 > minimumZoneX and x + self:getSize()/2 < maximumZoneX 
+        and y - self:getSize()/2 > minimumZoneY and y + self:getSize()/2 < maximumZoneY) then
         self.x = x
         self.y = y
         self:moveTo(self.x, self.y)

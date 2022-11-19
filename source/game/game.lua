@@ -4,10 +4,10 @@ import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
 import "game/player"
+import "game/cultist"
 
 local gfx <const> = playdate.graphics
 
-playerSpriteSize = 32
 borderSize = 2
 minimumZoneX = borderSize
 maximumZoneX = 400 - borderSize
@@ -15,7 +15,6 @@ minimumZoneY = borderSize
 maximumZoneY = 240 - borderSize
 
 function initializeGame()
-
     -- Init player instance
     local playerImage = gfx.image.new("images/game/rightPlayerPlusGros")
     local playerInstance = Player(200, 120, playerImage)
@@ -29,6 +28,8 @@ function initializeGame()
             borderImage:draw(0, 0)
         end
     )
+
+    spawnCultists()
 end
 
 function drawGame()
@@ -37,4 +38,7 @@ end
 
 function updateGame()
 
+end
+
+function spawnCultists()
 end
