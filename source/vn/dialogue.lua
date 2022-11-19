@@ -1,4 +1,5 @@
 import "CoreLibs/object"
+import "CoreLibs/math"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -7,6 +8,7 @@ local authorFont = gfx.font.new("fonts/Cop")
 
 local openingTime <const> = 500
 local frameBetweenText <const> = 1
+local frameToSkipDialogue <const> = 30
 
 -- Class that displays dialogue box
 class('Dialogue').extends()
@@ -42,8 +44,12 @@ function Dialogue:init(dialogue)
   self.opened = false
   self.openAnimation = false
 
+  self.skipFrameKeep = 0
+
   -- Can be surcharged to launch a function when the dialogue is finished
   self.closeCallback = nil
+  -- Can be surcharged to not let the player skip the dialogue
+  self.skipable = true
 end
 
 -- Ask for the game to open dialogue box and start animation
@@ -93,6 +99,20 @@ function Dialogue:animateText()
   end
 end
 
+function Dialogue:close()
+  self.opened = false
+  self.textDisplay = false
+  
+  if self.currentAudio ~= nil then
+    self.currentAudio:stop()
+  end
+
+  if self.closeCallback ~= nil then
+
+    self.closeCallback()
+  end
+end
+
 function Dialogue:update()
   if self.openAnimation then
     if not self.timerX.active then
@@ -135,18 +155,25 @@ function Dialogue:update()
       self.textDisplay = true
     else
       if self.currentStep == #self.tableDialogue then
-        self.opened = false
-        self.textDisplay = false
-        if self.closeCallback ~= nil then
-
-          self.closeCallback()
-        end
+        self:close()
       else
         self.currentStep+=1
         self.text = self.tableDialogue[self.currentStep].text
 
         self:animateText()
       end
+    end
+  end
+
+  if pd.buttonJustReleased(pd.kButtonB) then
+    self.skipFrameKeep = 0
+  end
+
+  if pd.buttonIsPressed(pd.kButtonB) then
+    self.skipFrameKeep +=1 
+
+    if self.skipFrameKeep == frameToSkipDialogue then
+      self:close()
     end
   end
 end
@@ -214,6 +241,18 @@ function Dialogue:draw()
     gfx.drawRoundRect(2, 160, 396, 78, 5)
 
     gfx.drawText("Ⓐ", 375, 215)
+
+    -- Skipable interface
+    if self.skipable then
+      gfx.setColor(gfx.kColorWhite)
+      gfx.fillRoundRect(342, -4, 60, 30, 2)
+      gfx.setColor(gfx.kColorBlack)
+      gfx.drawRoundRect(342, -4, 60, 30, 2)
+
+      gfx.fillRoundRect(345, 21, pd.math.lerp(0, 53, self.skipFrameKeep / frameToSkipDialogue), 3, 0)
+
+      gfx.drawText("Skip Ⓑ", 345, 2)
+    end
   end
 
   if self.textAnimation then
