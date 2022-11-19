@@ -19,8 +19,6 @@ function updateVN()
 end
 
 function drawVN()
-  gfx.clear()
-
   background:draw()
   dialogue:draw()
 end
