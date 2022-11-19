@@ -1,25 +1,26 @@
-import "CoreLibs/sprites"
 import "vn/dialogue"
+import "vn/background"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
-local backgroundImage = gfx.image.new("images/vn/cinematic_background")
-local backgroundX = 0
+local dialogue
+local background
 
 function initVN()
   dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/fanta-intro.json")
+  background = Background("images/vn/cinematic_background")
   dialogue:open()
 end
 
 function updateVN()
   dialogue:update()
-  backgroundX = math.sin(pd.getCurrentTimeMilliseconds()/3000) * 94 - 94
+  background:update()
 end
 
 function drawVN()
   gfx.clear()
-  backgroundImage:draw(backgroundX, 0)
-  -- gfx.fillRect(10, 20, 150, 260)
+
+  background:draw()
   dialogue:draw()
 end
