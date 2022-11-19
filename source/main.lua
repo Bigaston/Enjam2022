@@ -16,7 +16,7 @@ loadGame()
 initializeGame()
 
 function playdate.update()
-	updateGame()
-	drawGame()
+	updateVN()
+	drawVN()
 	playdate.drawFPS(0,0) -- FPS widget
 end
