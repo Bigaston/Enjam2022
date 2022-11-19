@@ -29,6 +29,7 @@ function Dialogue:init(dialogue)
   end
 
   self.currentImg = nil
+  self.currentInvertedImg = nil
   self.currentAudio = nil
   self.currentAuthor = nil
   self.currentStep = 1
@@ -66,8 +67,10 @@ function Dialogue:animateText()
 
   -- Choose the right image
   self.currentImg = nil
+  self.currentInvertedImg = nil
   if self.tableDialogue[self.currentStep].image ~= nil then
     self.currentImg = gfx.image.new(self.tableDialogue[self.currentStep].image)
+    self.currentInvertedImg = self.currentImg:invertedImage()
   end
 
   -- Play sound from dialogue
@@ -155,14 +158,47 @@ function Dialogue:draw()
     gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(200-self.timerX.value, 200 - self.timerY.value, self.timerX.value * 2, self.timerY.value * 2, 5)
   elseif self.opened then
+    -- Display IMG if needed
     if self.currentImg ~= nil then
-      self.currentImg:draw(10, 20)
+      if self.tableDialogue[self.currentStep].effect == "shake" then
+        if self._effectShakeX == nil then
+          self._effectShakeX = 0
+          self._effectShakeY = 0
+        end
+
+        self._effectShakeX = math.random(-2, 2)
+        self._effectShakeY = math.random(-2, 2)
+
+        self.currentImg:draw(10-self._effectShakeX, 20 - self._effectShakeY)
+
+      elseif self.tableDialogue[self.currentStep].effect == "invert" then
+        self.currentInvertedImg:draw(10, 20)
+      elseif self.tableDialogue[self.currentStep].effect == "blink" then
+        if self._effectBlinkFrame == nil then
+          self._effectBlinkFrame = 3
+          self._effectBlinkInverted = false
+        end
+
+        if self._effectBlinkFrame == 0 then
+          self._effectBlinkFrame = 3
+          self._effectBlinkInverted = not self._effectBlinkInverted
+        else
+          self._effectBlinkFrame -= 1
+        end
+
+        if self._effectBlinkInverted then
+          self.currentInvertedImg:draw(10, 20)
+        else
+          self.currentImg:draw(10, 20)
+        end
+      else
+        self.currentImg:draw(10, 20)
+      end
     end
 
+    -- Display author if needed
     if self.currentAuthor ~= nil then
       local strWidth, strHeight = pd.graphics.getTextSize(self.currentAuthor, authorFont)
-
-      print(strWidth, strHeight)
 
       gfx.setColor(gfx.kColorWhite)
       gfx.fillRoundRect(2, 150, strWidth-4, strHeight + 8, 2)
@@ -185,5 +221,4 @@ function Dialogue:draw()
   elseif self.textDisplay then
     gfx.drawText(self.text, 5, 163)
   end
-  -- gfx.drawText(self.timerX.value, 10, 10)
 end

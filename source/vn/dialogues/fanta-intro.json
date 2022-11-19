@@ -4,12 +4,21 @@
     "image":"images/vn/fanta.png", 
     "speed": 1,
     "audio": "sounds/vn/fanta1",
-    "author": "FANTANFT"
+    "author": "FANTANFT",
+    "effect": "shake"
   },
   {
     "text": "Tu veux payer sur VVFrance\navec moi?", 
     "image": "images/vn/fanta.png", 
     "speed": 3,
-    "author": "FANTANFT"
+    "author": "FANTANFT",
+    "effect": "invert"
+  },
+  {
+    "text": "Tu veux payer sur VVFrance\navec moi?", 
+    "image": "images/vn/fanta.png", 
+    "speed": 3,
+    "author": "FANTANFT",
+    "effect": "blink"
   }
 ]
