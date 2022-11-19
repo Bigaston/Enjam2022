@@ -4,6 +4,7 @@ local gfx <const> = pd.graphics
 class("Player").extends(gfx.sprite)
 
 function Player:init(x, y, image)
+    Player.super.init(self)
     self.x = x
     self.y = y
     self:moveTo(self.x, self.y)
@@ -57,11 +58,31 @@ function Player:manageMovement()
     -- Check if the player will be out of bounds, don't move if true
     if (x - self:getSize()/2 > minimumZoneX and x + self:getSize()/2 < maximumZoneX 
         and y - self:getSize()/2 > minimumZoneY and y + self:getSize()/2 < maximumZoneY) then
-        self.x = x
-        self.y = y
-        self:moveTo(self.x, self.y)
-    end
+        local actualX, actualY, collisions, length = self:moveWithCollisions(x, y)
+        self.x = actualX
+        self.y = actualY
 
+        if length>0 then 
+            self:manageKills(collisions)
+        end
+    end
+end
+
+function Player:manageKills(collisions)
+    for index, collision in pairs(collisions) do
+        local collidedObject = collision['other']
+        if collidedObject.className == "Cultist" then
+            collidedObject:remove()
+        end
+    end
+end
+
+function Player:collisionResponse()
+    return "overlap"
+end
+
+function Player:getPosition()
+    return self.x, self.y
 end
 
 function Player:update()
