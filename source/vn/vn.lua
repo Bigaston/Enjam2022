@@ -8,7 +8,7 @@ local dialogue
 local background
 
 function initVN()
-  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/fanta-intro.json")
+  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/intro.json")
   background = Background("images/vn/cinematic_background")
   dialogue:open()
 end

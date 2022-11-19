@@ -228,9 +228,9 @@ function Dialogue:draw()
       local strWidth, strHeight = pd.graphics.getTextSize(self.currentAuthor, authorFont)
 
       gfx.setColor(gfx.kColorWhite)
-      gfx.fillRoundRect(2, 150, strWidth-4, strHeight + 8, 2)
+      gfx.fillRoundRect(2, 150, strWidth + 4, strHeight + 8, 2)
       gfx.setColor(gfx.kColorBlack)
-      gfx.drawRoundRect(2, 150, strWidth-4, strHeight + 8, 2)
+      gfx.drawRoundRect(2, 150, strWidth + 4, strHeight + 8, 2)
 
       authorFont:drawText(self.currentAuthor, 5, 152)
     end
