@@ -13,6 +13,7 @@ function Player:init(x, y, image)
     self.rotationModifier = 5
     self:setImage(image)
     self:setCollideRect(0, 0, self:getSize())
+    self:setZIndex(2)
 end
 
 function Player:manageRotation()
@@ -68,10 +69,15 @@ function Player:manageMovement()
     end
 end
 
+-- Kills the collided cultist and spawns a plash
 function Player:manageKills(collisions)
     for index, collision in pairs(collisions) do
         local collidedObject = collision['other']
         if collidedObject.className == "Cultist" then
+            local splashImage = gfx.image.new("images/game/splash")
+            local splashSprite = gfx.sprite.new(splashImage)
+            splashSprite:moveTo(collidedObject.x, collidedObject.y)
+            splashSprite:add()
             collidedObject:remove()
         end
     end

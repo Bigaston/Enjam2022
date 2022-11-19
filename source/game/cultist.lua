@@ -19,6 +19,7 @@ function Cultist:init(x, y, image)
     self.speed = 1
     self.maxDeltaForRandomMovements = 10
     self:setCollideRect(0, 0, self:getSize())
+    self:setZIndex(1)
 end
 
 function Cultist:update()

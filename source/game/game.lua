@@ -18,7 +18,7 @@ amountOfCultists = 40
 
 function initializeGame()
     -- Init player instance
-    local playerImage = gfx.image.new("images/game/rightPlayerPlusGros")
+    local playerImage = gfx.image.new("images/game/player")
     playerInstance = Player(200, 120, playerImage)
     playerInstance:add()
 
