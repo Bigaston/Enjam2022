@@ -1,3 +1,8 @@
+import "CoreLibs/timer"
+import "CoreLibs/math"
+import "CoreLibs/sprites"
+import "vn/vn"
+
 local gfx <const> = playdate.graphics
 
 local function loadGame()
