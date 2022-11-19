@@ -2,7 +2,8 @@
   {
     "text": "Tiens, je me demande bien pourquoi on m'a\ndemande de venir a l'ecole un dimanche", 
     "speed": 1,
-    "author": "BIGAUCHO"
+    "author": "BIGAUCHO",
+    "image": "images/vn/bigaucho_think"
   },
   {
     "text": "A part pour une gamejam de qualite certaine,\nje n'en vois pas la raison.", 
@@ -22,6 +23,8 @@
   {
     "text": "Aaaah. Je me transforme en...\nrouleau-compresseur-garou !!",
     "speed": 1,
-    "author": "BIGAUCHO"
+    "author": "BIGAUCHO",
+    "image": "images/vn/bigaucho_detresse",
+    "effect": "blink"
   }
 ]
