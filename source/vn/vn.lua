@@ -9,8 +9,8 @@ local backgroundX = 0
 
 function initVN()
   local fantaDialogues = {
-    "Salut ma couille, c'est Fanta\nJ'aime les NFT",
-    "Tu veux payer sur VVFrance\navec moi?"
+    {text = "Salut ma couille, c'est Fanta\nJ'aime les NFT", image = "images/vn/fanta.png", speed = 1},
+    {text = "Tu veux payer sur VVFrance\navec moi?", image = "images/vn/fanta.png", speed = 3}
   }
   dialogue = Dialogue(fantaDialogues, false)
   dialogue:open()
@@ -24,5 +24,6 @@ end
 function drawVN()
   gfx.clear()
   backgroundImage:draw(backgroundX, 0)
+  -- gfx.fillRect(10, 20, 150, 260)
   dialogue:draw()
 end

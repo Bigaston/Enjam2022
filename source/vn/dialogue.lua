@@ -4,28 +4,36 @@ local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 local openingTime <const> = 500
-local frameBetweenText <const> = 3
+local frameBetweenText <const> = 1
 
 -- Class that displays dialogue box
 class('Dialogue').extends()
 
 -- Init the dialogue class
-function Dialogue:init(text, opened) 
+function Dialogue:init(dialogue, opened) 
   Dialogue.super.init(self)
-  if type(text) == "string" then
-    self.tableText = {text}
-    self.text = text
+
+  self.currentImg = nil
+
+  if type(dialogue) == "string" then
+    self.tableDialogue = {dialogue}
+    self.text = dialogue
   else
-    self.tableText = text
-    self.text = text[1]
+    self.tableDialogue = dialogue
+    self.text = dialogue[1].text
+
+    if dialogue[1].image ~= nil then
+      self.currentImg = gfx.image.new(dialogue[1].image)
+    end
   end
 
-  self.currentText = 1
+  self.currentStep = 1
 
   self.textAnimation = false
   self.textDisplay = false
   self.textElapsedFrame = 0
   self.textDisplayChar = 0
+
 
   self.opened = opened
   self.openAnimation = false
@@ -40,7 +48,12 @@ function Dialogue:open()
 end
 
 function Dialogue:animateText()
-  self.textElapsedFrame = frameBetweenText
+  if self.tableDialogue[self.currentStep].speed ~= nil then
+    self.textElapsedFrame = self.tableDialogue[self.currentStep].speed
+  else
+    self.textElapsedFrame = frameBetweenText
+  end
+
   self.textDisplayChar = 0
   self.textDisplay = false
   self.textAnimation = true
@@ -58,7 +71,12 @@ function Dialogue:update()
 
   if self.textAnimation then
     if self.textElapsedFrame == 0 then
-      self.textElapsedFrame = frameBetweenText
+      if self.tableDialogue[self.currentStep].speed ~= nil then
+        self.textElapsedFrame = self.tableDialogue[self.currentStep].speed
+      else
+        self.textElapsedFrame = frameBetweenText
+      end
+      
       self.textDisplayChar +=1
 
       if self.textDisplayChar == #self.text then
@@ -82,7 +100,7 @@ function Dialogue:update()
       self.textAnimation = false
       self.textDisplay = true
     else
-      if self.currentText == #self.tableText then
+      if self.currentStep == #self.tableDialogue then
         self.opened = false
         self.textDisplay = false
         if self.closeCallback ~= nil then
@@ -90,8 +108,15 @@ function Dialogue:update()
           self.closeCallback()
         end
       else
-        self.currentText+=1
-        self.text = self.tableText[self.currentText]
+        self.currentStep+=1
+        self.text = self.tableDialogue[self.currentStep].text
+        
+        if self.tableDialogue[self.currentStep].image ~= nil then
+          self.currentImg = gfx.image.new(self.tableDialogue[self.currentStep].image)
+        else
+          self.currentImg = nil
+        end
+
         self:animateText()
       end
     end
@@ -105,6 +130,8 @@ function Dialogue:draw()
     gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(200-self.timerX.value, 200 - self.timerY.value, self.timerX.value * 2, self.timerY.value * 2, 5)
   elseif self.opened then
+    self.currentImg:draw(10, 20)
+
     gfx.setColor(gfx.kColorWhite)
     gfx.fillRoundRect(2, 160, 396, 78, 5)
     gfx.setColor(gfx.kColorBlack)
