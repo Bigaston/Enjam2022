@@ -3,14 +3,21 @@ import "CoreLibs/object"
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
+local authorFont = gfx.font.new("fonts/Cop")
+
 local openingTime <const> = 500
 local frameBetweenText <const> = 1
 
 -- Class that displays dialogue box
 class('Dialogue').extends()
 
+function Dialogue.loadDialogueFromJSON(path)
+  local jsonFile = json.decodeFile(path)
+  return Dialogue(jsonFile)
+end
+
 -- Init the dialogue class
-function Dialogue:init(dialogue, opened) 
+function Dialogue:init(dialogue) 
   Dialogue.super.init(self)
 
   if type(dialogue) == "string" then
@@ -23,6 +30,7 @@ function Dialogue:init(dialogue, opened)
 
   self.currentImg = nil
   self.currentAudio = nil
+  self.currentAuthor = nil
   self.currentStep = 1
 
   self.textAnimation = false
@@ -30,9 +38,11 @@ function Dialogue:init(dialogue, opened)
   self.textElapsedFrame = 0
   self.textDisplayChar = 0
 
-
-  self.opened = opened
+  self.opened = false
   self.openAnimation = false
+
+  -- Can be surcharged to launch a function when the dialogue is finished
+  self.closeCallback = nil
 end
 
 -- Ask for the game to open dialogue box and start animation
@@ -65,13 +75,18 @@ function Dialogue:animateText()
     self.currentAudio:stop()
   end
 
-
   if self.tableDialogue[self.currentStep].audio ~= nil then
     self.currentAudio = pd.sound.sampleplayer.new(self.tableDialogue[self.currentStep].audio)
-    print(self.currentAudio)
     self.currentAudio:play()
   else
     self.currentAudio = nil
+  end
+
+  -- Add an author
+  if self.tableDialogue[self.currentStep].author ~= nil then
+    self.currentAuthor = self.tableDialogue[self.currentStep].author
+  else
+    self.currentAuthor = nil
   end
 end
 
@@ -140,7 +155,22 @@ function Dialogue:draw()
     gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(200-self.timerX.value, 200 - self.timerY.value, self.timerX.value * 2, self.timerY.value * 2, 5)
   elseif self.opened then
-    self.currentImg:draw(10, 20)
+    if self.currentImg ~= nil then
+      self.currentImg:draw(10, 20)
+    end
+
+    if self.currentAuthor ~= nil then
+      local strWidth, strHeight = pd.graphics.getTextSize(self.currentAuthor, authorFont)
+
+      print(strWidth, strHeight)
+
+      gfx.setColor(gfx.kColorWhite)
+      gfx.fillRoundRect(2, 150, strWidth-4, strHeight + 8, 2)
+      gfx.setColor(gfx.kColorBlack)
+      gfx.drawRoundRect(2, 150, strWidth-4, strHeight + 8, 2)
+
+      authorFont:drawText(self.currentAuthor, 5, 152)
+    end
 
     gfx.setColor(gfx.kColorWhite)
     gfx.fillRoundRect(2, 160, 396, 78, 5)
