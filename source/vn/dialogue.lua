@@ -52,8 +52,14 @@ end
 
 function Dialogue:draw()
   if self.openAnimation then
+    gfx.setColor(gfx.kColorWhite)
+    gfx.fillRoundRect(200-self.timerX.value, 200 - self.timerY.value, self.timerX.value * 2, self.timerY.value * 2, 5)
+    gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(200-self.timerX.value, 200 - self.timerY.value, self.timerX.value * 2, self.timerY.value * 2, 5)
   elseif self.opened then
+    gfx.setColor(gfx.kColorWhite)
+    gfx.fillRoundRect(2, 160, 396, 78, 5)
+    gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(2, 160, 396, 78, 5)
   end
 
