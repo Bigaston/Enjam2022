@@ -4,27 +4,27 @@
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_think",
-    "audio": "sounds/vn/bigaston_intro_1.wav"
+    "audio": "sounds/vn/bigaston_intro_1_fr.wav"
   },
   {
     "text": "A part pour une gamejam de qualite certaine,\nje n'en vois pas la raison.", 
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_think",
-    "audio": "sounds/vn/bigaston_intro_2.wav"
+    "audio": "sounds/vn/bigaston_intro_2_fr.wav"
   },
   {
     "text": "RAH, RAH, RAH.",
     "speed": 2,
     "author": "DEMON INCONNU",
-    "audio": "sounds/vn/uwusam_intro.wav"
+    "audio": "sounds/vn/uwusam_intro_fr.wav"
   },
   {
     "text": "Mais, que m'arrive-t-il ?",
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_colere.png",
-    "audio": "sounds/vn/bigaston_intro_3.wav"
+    "audio": "sounds/vn/bigaston_intro_3_fr.wav"
   },
   {
     "text": "Aaaah. Je me transforme en...\nrouleau-compresseur-garou !!",
@@ -32,6 +32,6 @@
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_detresse",
     "effect": "blink",
-    "audio": "sounds/vn/bigaston_intro_4.wav"
+    "audio": "sounds/vn/bigaston_intro_4_fr.wav"
   }
 ]

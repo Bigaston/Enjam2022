@@ -4,27 +4,27 @@
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_think",
-    "audio": "sounds/vn/bigaston_intro_1.wav"
+    "audio": "sounds/vn/bigaston_intro_1_en.wav"
   },
   {
     "text": "The only good reason I could think of is\nto do an awesome gamejam.", 
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_think",
-    "audio": "sounds/vn/bigaston_intro_2.wav"
+    "audio": "sounds/vn/bigaston_intro_2_en.wav"
   },
   {
     "text": "RAH, RAH, RAH.",
     "speed": 2,
     "author": "UNKNOWN DEMON",
-    "audio": "sounds/vn/uwusam_intro.wav"
+    "audio": "sounds/vn/uwusam_intro_en.wav"
   },
   {
     "text": "Wait, what is happening to me?",
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_colere.png",
-    "audio": "sounds/vn/bigaston_intro_3.wav"
+    "audio": "sounds/vn/bigaston_intro_3_en.wav"
   },
   {
     "text": "Aaaah. I'm becoming a...\nrouleau-compresseur-garou!!",
@@ -32,6 +32,6 @@
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_detresse",
     "effect": "blink",
-    "audio": "sounds/vn/bigaston_intro_4.wav"
+    "audio": "sounds/vn/bigaston_intro_4_en.wav"
   }
 ]
