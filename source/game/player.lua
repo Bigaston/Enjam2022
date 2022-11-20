@@ -1,6 +1,7 @@
 import "game/bloodDrop"
 import "vn/winVN"
 import "audio"
+import "save"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -22,6 +23,8 @@ function Player:init(x, y, image)
     self.maxBloodPool = 100
     self.bloodGainOnKill = 10
     self.bloodUsedOnDrop = 1
+
+    playdate.startAccelerometer()
 end
 
 function Player:manageRotation()
@@ -45,10 +48,16 @@ end
 
 -- Checks the crank to move forward or backward
 function Player:manageMovement()
-    local change, acceleratedChange = playdate.getCrankChange()
+    if Save.getOption("onehand") then
+        local a,b,c = playdate.readAccelerometer()
+        speed = b * -5
+    else
+        local change, acceleratedChange = playdate.getCrankChange()
+        speed = change/5
+    end
+
     local x = 0
     local y = 0
-    speed = change/5
 
     if (self.currentRotation == 90 or currentRotation == 270) then
         -- the value of cos is too low and math.floor won't work

@@ -8,6 +8,7 @@ import "game/cultist"
 import "game/pentacle"
 import "game/bloodCheckpoint"
 import "vn/looseVN"
+import "save"
 
 local gfx <const> = playdate.graphics
 numberOfCheckpoints = 0
@@ -61,7 +62,7 @@ function drawGame()
     drawBloodJauge()
 
     -- Shows the crank to the player if it's docked
-    if playdate.isCrankDocked() then
+    if playdate.isCrankDocked() and not Save.getOption("onehand") then
         playdate.ui.crankIndicator:update()
     end
 end
@@ -74,7 +75,7 @@ function updateGame()
     end
 
     
-	if playTimer.value == 0 then
+	if playTimer.value == 0 and Save.getOption("timer") then
 		-- LOOSE
         initLooseVN()
         screen = "looseVN"
@@ -125,24 +126,26 @@ end
 
 -- Draws the time left and a border
 function drawTime()
-	gfx.setColor(gfx.kColorWhite)
-	gfx.fillRoundRect(2, 2, 48, 19, 2)
-	gfx.setColor(gfx.kColorBlack)
-	gfx.drawRoundRect(2, 2, 48, 19, 2)
+    if Save.getOption("timer") then
+        gfx.setColor(gfx.kColorWhite)
+        gfx.fillRoundRect(2, 2, 48, 19, 2)
+        gfx.setColor(gfx.kColorBlack)
+        gfx.drawRoundRect(2, 2, 48, 19, 2)
 
-	local hourglassImage = gfx.image.new("images/game/hourglass")
-	gfx.image.draw(hourglassImage, 4, 4)
-	gfx.drawText(math.floor(playTimer.value), 24, 4)
+        local hourglassImage = gfx.image.new("images/game/hourglass")
+        gfx.image.draw(hourglassImage, 4, 4)
+        gfx.drawText(math.floor(playTimer.value), 24, 4)
+    end
 end
 
 -- Draws the amount of blood the player has and a border
 function drawBloodJauge()
 	gfx.setColor(gfx.kColorWhite)
-	gfx.fillRoundRect(340, 2, 70, 20, 2)
+	gfx.fillRoundRect(338, 2, 70, 20, 2)
 	gfx.setColor(gfx.kColorBlack)
-	gfx.drawRoundRect(340, 2, 70, 20, 2)
+	gfx.drawRoundRect(338, 2, 70, 20, 2)
 
 	local bloodIconImage = gfx.image.new("images/game/bloodIcon")
-	gfx.image.draw(bloodIconImage, 340, 4)
-	gfx.drawTextAligned(playerInstance:getBloodPool() .. " L", 360, 4)
+	gfx.image.draw(bloodIconImage, 338, 4)
+	gfx.drawTextAligned(playerInstance:getBloodPool() .. " L", 358, 4)
 end

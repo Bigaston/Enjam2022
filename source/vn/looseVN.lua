@@ -9,6 +9,8 @@ local background
 
 -- The VN part used when you loose the game
 function initLooseVN()
+  playdate.stopAccelerometer()
+
   dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. currentLevel.looseDialogue)
   background = Background("images/vn/end_background")
 
