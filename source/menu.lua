@@ -41,8 +41,15 @@ function initMenu()
     end
   end
 
+  local levelFiles = pd.file.listFiles("levels")
+  local levels = {}
+
+  for i = 1, #levelFiles, 1 do
+    levels[i] = json.decodeFile("levels/" .. levelFiles[i])
+  end
+
   levelUi = pd.ui.gridview.new(350, 32)
-  levelUi:setNumberOfRows(4)
+  levelUi:setNumberOfRows(#levels)
   levelUi:setNumberOfColumns(1)
   levelUi:setCellPadding(0, 0, 0, 10)
 
@@ -53,7 +60,7 @@ function initMenu()
 
     gfx.drawRoundRect(x + 40, y, width-40, height, 5)
 
-    gfx.drawText(Language.getString(levelUiText[row]), x + 45, y + 7)
+    gfx.drawText(levels[row].levelName, x + 45, y + 7)
   end
 end
 
