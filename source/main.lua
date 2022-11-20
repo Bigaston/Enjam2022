@@ -3,18 +3,22 @@ import "CoreLibs/graphics"
 import "CoreLibs/sprites"
 import "CoreLibs/timer"
 
+import "language"
 import "game/game"
 import "vn/vn"
 import "titleScreen"
+import "menu"
 
 local gfx <const> = playdate.graphics
 
-screen = "game"
+-- title menu intro game
+screen = "title" --"title" -- TODO: Remettre sur title
 
 local function loadGame()
+	Language.init()
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 	initTitle()
-	initializeGame("nekoLevel")
+	-- initMenu() -- TODO: Degager ça
 end
 
 loadGame()
@@ -23,10 +27,13 @@ function playdate.update()
 	playdate.timer.updateTimers()
   	gfx.clear()
 
-	if screen == "title" then
+	if screen == "menu" then		
+		updateMenu()
+		drawMenu()
+	elseif screen == "title" then
 		updateTitle()
 		drawTitle()
-	elseif screen == "intro" then
+	elseif screen == "vn" then
 		updateVN()
 		drawVN()
 	elseif screen == "game" then
