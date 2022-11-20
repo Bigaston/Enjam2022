@@ -1,5 +1,6 @@
 import "CoreLibs/object"
 import "CoreLibs/math"
+import "save"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -151,7 +152,7 @@ function Dialogue:update()
   end
 
   -- Handle A button
-  if pd.buttonJustPressed(pd.kButtonA) then
+  if pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight) then
     -- If it's during open animation, skip anim and text anim
     if self.openAnimation then
       self.openAnimation = false
@@ -178,12 +179,12 @@ function Dialogue:update()
   end
 
   -- Reset skip frame
-  if pd.buttonJustReleased(pd.kButtonB) then
+  if pd.buttonJustReleased(pd.kButtonB) or pd.buttonJustReleased(pd.kButtonDown) then
     self.skipFrameKeep = 0
   end
 
   -- Start skip frame
-  if pd.buttonIsPressed(pd.kButtonB) then
+  if pd.buttonIsPressed(pd.kButtonB) or pd.buttonIsPressed(pd.kButtonDown) then
     self.skipFrameKeep +=1 
 
     if self.skipFrameKeep == frameToSkipDialogue then
@@ -262,7 +263,11 @@ function Dialogue:draw()
     gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(2, 160, 396, 78, 5)
 
-    gfx.drawText("Ⓐ", 375, 215)
+    if Save.getOption("onehand") then
+      gfx.drawText("➡️", 375, 215)
+    else
+      gfx.drawText("Ⓐ", 375, 215)
+    end
 
     -- Skipable interface
     if self.skipable then
@@ -273,7 +278,11 @@ function Dialogue:draw()
 
       gfx.fillRoundRect(345, 21, pd.math.lerp(0, 53, self.skipFrameKeep / frameToSkipDialogue), 3, 0)
 
-      gfx.drawText("Skip Ⓑ", 345, 2)
+      if Save.getOption("onehand") then
+        gfx.drawText("Skip ⬇️", 345, 2)
+      else
+        gfx.drawText("Skip Ⓑ", 345, 2)
+      end
     end
   end
 
