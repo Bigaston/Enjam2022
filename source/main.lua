@@ -29,20 +29,22 @@ local function loadGame()
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 
 	levelFiles = pd.file.listFiles("levels")
-  levels = {}
+	levels = {}
 
-  for i = 1, #levelFiles, 1 do
-    levels[i] = json.decodeFile("levels/" .. levelFiles[i])
-  end
+	for i = 1, #levelFiles, 1 do
+		levels[i] = json.decodeFile("levels/" .. levelFiles[i])
+	end
 
 	initTitle()
+	--initGame()
 end
 
 loadGame()
 
 function playdate.update()
+	gfx.clear()
+
 	playdate.timer.updateTimers()
-  	gfx.clear()
 
 	if screen == "menu" then		
 		updateMenu()
@@ -64,5 +66,5 @@ function playdate.update()
 		drawGame()
 	end
 
-	playdate.drawFPS(0,0) -- FPS widget
 end
+
