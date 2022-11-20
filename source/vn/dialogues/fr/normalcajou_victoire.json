@@ -1,0 +1,21 @@
+[
+    {
+      "text": "Etait-ce vraiment utile d’user de tant de violence ?", 
+      "speed": 1,
+      "author": "NORMALCAJOU",
+      "image": "images/vn/cajou_impassable.png"
+    },
+    {
+        "text": "Animal primitif que tu es, c’est ainsi\nque tu me remercies de mon cadeau.", 
+        "speed": 1,
+        "author": "NORMALCAJOU",
+        "image": "images/vn/cajou_condescendante.png",
+        "effect": "invert"
+    },
+    {
+        "text": "Mais je comprends, tu n’en voulais pas\ndonc je le reprends. Va maintenant.", 
+        "speed": 1,
+        "author": "NORMALCAJOU",
+        "image": "images/vn/cajou_impassable.png"
+    }
+  ]
