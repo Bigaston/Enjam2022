@@ -1,13 +1,13 @@
 [
     {
-      "text": "Oh c'etait toi ? Je pensais que c'etait un mauvais\n reve.", 
+      "text": "Oh c'etait toi ? Je pensais que c'etait un mauvais\nreve.", 
       "speed": 1,
       "author": "VAPOCHORLY",
         "image": "images/vn/vapochorly_dark.png",
         "audio": "sounds/vn/vapochorly_victoire_1.wav"
     },
     {
-        "text": "Excuse-moi pour cette transformation sortie\n de nulle part.", 
+        "text": "Excuse-moi pour cette transformation sortie\nde nulle part.", 
         "speed": 1,
         "author": "VAPOCHORLY",
         "image": "images/vn/vapochorly_disco.png",
@@ -22,7 +22,7 @@
         "audio": "sounds/vn/vapochorly_victoire_3.wav"
     },
     {
-        "text": "Fais gaffe a toi et ne te retourne pas.\n Allez cours batard.", 
+        "text": "Fais gaffe a toi et ne te retourne pas.\nAllez cours batard.", 
         "speed": 1,
         "author": "VAPOCHORLY",
         "image": "images/vn/vapochorly_disco.png",
