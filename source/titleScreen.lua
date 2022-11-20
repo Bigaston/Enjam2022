@@ -36,8 +36,8 @@ function updateTitle()
   end
 
   if pd.buttonJustPressed(pd.kButtonA) then
-    initVN()
-    screen = "intro"
+    initMenu()
+    screen = "menu"
   end
 end
 
