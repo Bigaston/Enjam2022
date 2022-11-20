@@ -1,0 +1,31 @@
+[
+    {
+      "text": "Oh it was you? I thought I was having a bad dream.", 
+      "speed": 1,
+      "author": "VAPOCHORLY",
+        "image": "images/vn/vapochorly_dark.png",
+        "audio": "sounds/vn/vapochorly_victoire_1.wav"
+    },
+    {
+        "text": "Well I'm sorry for this out-of-the-blue\ntransformation.", 
+        "speed": 1,
+        "author": "VAPOCHORLY",
+        "image": "images/vn/vapochorly_disco.png",
+        "audio": "sounds/vn/vapochorly_victoire_2.wav"
+    },
+    {
+        "text": "But you still killed my minions. So I guess I should\n let you leave.", 
+        "speed": 1,
+        "author": "VAPOCHORLY",
+        "image": "images/vn/vapochorly_dark.png",
+        "effect": "invert",
+        "audio": "sounds/vn/vapochorly_victoire_3.wav"
+    },
+    {
+        "text": "Before I change my mind...", 
+        "speed": 1,
+        "author": "VAPOCHORLY",
+        "image": "images/vn/vapochorly_disco.png",
+        "effect": "shake"
+    }
+  ]

@@ -1,0 +1,11 @@
+{
+    "levelName": "VapoChorly",
+    "checkpoints": [ [57,97], [87,96], [122,96], [160,96], [198,95], [237,96], [279,96],
+    [56,144], [96,145], [133,145], [172,144], [212,143], [248,143], [280,144],
+    [311,110], [311,128],
+    [340,110], [340,128]],
+    "backgroundImage": "images/levels/2-vapoChorly",
+    "winDialogue": "vapochorly_victoire.json",
+    "looseDialogue": "vapochorly_defaite.json",
+    "difficulty": 2
+  }
