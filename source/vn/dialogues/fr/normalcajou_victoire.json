@@ -7,7 +7,7 @@
       "audio": "sounds/vn/normalcajou_victoire_1_fr.wav"
     },
     {
-        "text": "Animal primitif que tu es, c'est ainsi que tu me\n remercies de mon cadeau.", 
+        "text": "Animal primitif que tu es, c'est ainsi que tu me\nremercies de mon cadeau.", 
         "speed": 1,
         "author": "NORMALCAJOU",
         "image": "images/vn/normalcajou_condescendante.png",
@@ -15,7 +15,7 @@
         "audio": "sounds/vn/normalcajou_victoire_2_fr.wav"
     },
     {
-        "text": "Mais je comprends, tu n'en voulais pas donc je le\n reprends. Va maintenant.", 
+        "text": "Mais je comprends, tu n'en voulais pas donc je le\nreprends. Va maintenant.", 
         "speed": 1,
         "author": "NORMALCAJOU",
         "image": "images/vn/normalcajou_impassable.png",

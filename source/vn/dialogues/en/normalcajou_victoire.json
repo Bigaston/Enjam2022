@@ -7,7 +7,7 @@
       "audio": "sounds/vn/normalcajou_victoire_1_en.wav"
     },
     {
-        "text": "You primitive animal, I offered you a gift and this\n is how you thank me.", 
+        "text": "You primitive animal, I offered you a gift and this\nis how you thank me.", 
         "speed": 1,
         "author": "NORMALCAJOU",
         "image": "images/vn/normalcajou_condescendante.png",
@@ -15,7 +15,7 @@
         "audio": "sounds/vn/normalcajou_victoire_2_en.wav"
     },
     {
-        "text": "But I get it, you didn't want it so I'm taking it back.\n You can go.", 
+        "text": "But I get it, you didn't want it so I'm taking it back.\nYou can go.", 
         "speed": 1,
         "author": "NORMALCAJOU",
         "image": "images/vn/normalcajou_impassable.png",
