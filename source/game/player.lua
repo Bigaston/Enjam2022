@@ -1,3 +1,5 @@
+import "game/bloodDrop"
+
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
@@ -15,8 +17,8 @@ function Player:init(x, y, image)
     self:setCollideRect(0, 0, self:getSize())
     self:setZIndex(10)
     self.currentBloodPool = 0
-    self.maxBloodPool = 100
-    self.bloodGainOnKill = 10
+    self.maxBloodPool = 1000
+    self.bloodGainOnKill = 1000
     self.bloodUsedOnDrop = 2
 end
 
@@ -83,6 +85,7 @@ function Player:manageKills(collisions)
             splashSprite:moveTo(collidedObject.x, collidedObject.y)
             splashSprite:add()
             collidedObject:remove()
+            amountOfAliveCultists -= 1
             self:gainBlood()
         end
     end
@@ -103,15 +106,34 @@ function Player:manageBloodDrop()
     if (pd.buttonIsPressed(pd.kButtonDown)) and (self.currentBloodPool >= self.bloodUsedOnDrop) then --and (not isOnBloodDrop) then
         self:dropBlood()
         self.currentBloodPool -= self.bloodUsedOnDrop
+        self:checkCheckpoints()
     end
 end
 
 -- Visually drops blood
 function Player:dropBlood()
     local bloodDropImage = gfx.image.new("images/game/bloodDrop")
-    local bloodDropSprite = gfx.sprite.new(bloodDropImage)
-    bloodDropSprite:moveTo(self.x, self.y)
+    local bloodDropSprite = BloodDrop(self.x, self.y, bloodDropImage)
     bloodDropSprite:add()
+end
+
+function Player:checkCheckpoints()
+    local collisions = gfx.sprite.overlappingSprites(self)
+
+    for i = 1, #collisions, 1 do
+        local collidedObject = collisions[i]
+        if collidedObject.className == "BloodCheckpoint" then
+            if collidedObject.active == true then
+                collidedObject.active = false
+                checkpointsReached += 1
+                if checkpointsReached == numberOfCheckpoints then
+                    -- WIN
+                    return
+                end
+            end
+        end
+    end
+
 end
 
 function Player:collisionResponse()
