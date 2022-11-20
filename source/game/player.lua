@@ -1,5 +1,6 @@
 import "game/bloodDrop"
 import "vn/winVN"
+import "audio"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -70,6 +71,7 @@ function Player:manageMovement()
         self.x = actualX
         self.y = actualY
 
+
         if length>0 then 
             self:manageKills(collisions)
         end
@@ -88,6 +90,7 @@ function Player:manageKills(collisions)
             collidedObject:remove()
             amountOfAliveCultists -= 1
             self:gainBlood()
+            Audio.playSouffrance()
         end
     end
 end
@@ -97,6 +100,7 @@ function Player:gainBlood()
     self.currentBloodPool += self.bloodGainOnKill
     if self.currentBloodPool > self.maxBloodPool then
         self.currentBloodPool = self.maxBloodPool
+        Audio.playGameSound("jauge_encre_pleine")
     end
 end
 

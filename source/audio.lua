@@ -1,6 +1,8 @@
 local pd <const> = playdate
 
-Audio = {}
+Audio = {
+  game = {}
+}
 
 local sounds = {
   ui = {},
@@ -17,7 +19,7 @@ function Audio.init()
   local gameSounds = pd.file.listFiles("sounds/game")
   
   for i = 1, #gameSounds, 1 do
-    sounds.ui[gameSounds[i]] = pd.sound.sampleplayer.new("sounds/game/" .. gameSounds[i])
+    sounds.game[gameSounds[i]] = pd.sound.sampleplayer.new("sounds/game/" .. gameSounds[i])
   end
 end
 
@@ -26,5 +28,12 @@ function Audio.playUI(sound)
 end
 
 function Audio.playGameSound(sound)
-  sounds.ui[sound .. ".pda"]:play()
+  sounds.game[sound .. ".pda"]:play()
+end
+
+function Audio.playSouffrance()
+  local number = math.random(1, 6)
+
+  sounds.game["cri_souffrance_" .. number .. ".pda"]:setVolume(0.3)
+  sounds.game["cri_souffrance_" .. number .. ".pda"]:play()
 end
