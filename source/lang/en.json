@@ -1,5 +1,9 @@
 {
   "menu.level": "Choose a level",
   "menu.lang": "Language:",
-  "menu.title": "Main menu"
+  "menu.title": "Main menu",
+  "menu.timer": "Timer",
+  "menu.onehand": "One Hand Mode",
+  "menu.disabled": "Disabled",
+  "menu.enabled": "Enabled"
 }

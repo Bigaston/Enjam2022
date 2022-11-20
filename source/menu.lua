@@ -3,18 +3,17 @@ import "CoreLibs/ui"
 
 import "language"
 import "audio"
+import "save"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 -- Main menu UI screen
 local menuUi
-local menuUiText <const> = {"menu.level", "menu.lang"}
-local langUi = 2
+local menuUiText <const> = {"menu.level", "menu.lang", "menu.timer", "menu.onehand"}
 
 -- Level select UI
 local levelUi
-local levelUiText <const> = {"menu.level1", "menu.level2", "menu.level3", "menu.level4"}
 
 -- Move between the 2 screens
 local menuScreen = "base"
@@ -25,12 +24,20 @@ local menuDifferentY = 0
 local selectorImg = gfx.image.new("images/menu/selector")
 local leftRightImg = gfx.image.new("images/menu/leftright")
 
+local function getOptionString(boolean)
+  if boolean then
+    return "menu.enabled"
+  else
+    return "menu.disabled"
+  end
+end
+
 function initMenu()
   -- Setup the UI for the main menu using PlayDate GridVew Elements
   menuUi = pd.ui.gridview.new(350, 32)
 
   menuUi:setSectionHeaderHeight(30)
-  menuUi:setNumberOfRows(2)
+  menuUi:setNumberOfRows(4)
   menuUi:setNumberOfColumns(1)
   menuUi:setCellPadding(0, 0, 0, 10)
 
@@ -41,11 +48,17 @@ function initMenu()
 
     gfx.drawRoundRect(x + 40, y, width-40, height, 5)
 
-    if row ~= langUi then
-      gfx.drawText(Language.getString(menuUiText[row]), x + 45, y + 7)
-    else
+    if row == 2 then
       gfx.drawText(Language.getString(menuUiText[row]) .. " " .. Language.getDisplayLang(), x + 45, y + 7)
       leftRightImg:draw(x + width - 30, y)
+    elseif row == 3 then
+      gfx.drawText(Language.getString(menuUiText[row]) .. " " .. Language.getString(getOptionString(Save.getOption("timer"))), x + 45, y + 7)
+      leftRightImg:draw(x + width - 30, y)
+    elseif row == 4 then
+      gfx.drawText(Language.getString(menuUiText[row]) .. " " .. Language.getString(getOptionString(Save.getOption("onehand"))), x + 45, y + 7)
+      leftRightImg:draw(x + width - 30, y)
+    else
+      gfx.drawText(Language.getString(menuUiText[row]), x + 45, y + 7)
     end
   end
 
@@ -109,15 +122,21 @@ function updateMenu()
       end
     end
 
-    -- Change the language
-    if menuUi:getSelectedRow() == langUi then
-      if pd.buttonJustPressed(pd.kButtonRight) or pd.buttonJustPressed(pd.kButtonLeft) or pd.buttonJustPressed(pd.kButtonA) then
+    -- Change options
+    if pd.buttonJustPressed(pd.kButtonRight) or pd.buttonJustPressed(pd.kButtonLeft) or pd.buttonJustPressed(pd.kButtonA) then
+      if menuUi:getSelectedRow() == 2 then
         Audio.playUI("buttons_navigation_click")
         if Language.getLang() == "fr" then
           Language.setLang("en")
         else
           Language.setLang("fr")
         end
+      elseif menuUi:getSelectedRow() == 3 then
+        Audio.playUI("buttons_navigation_click")
+        Save.changeOption("timer", not Save.getOption("timer"))
+      elseif menuUi:getSelectedRow() == 4 then
+        Audio.playUI("buttons_navigation_click")
+        Save.changeOption("onehand", not Save.getOption("onehand"))
       end
     end
   -- Level choose
