@@ -25,7 +25,7 @@ loadGame()
 
 function playdate.update()
 	playdate.timer.updateTimers()
-  gfx.clear()
+  	gfx.clear()
 
 	if screen == "menu" then		
 		updateMenu()
@@ -36,6 +36,9 @@ function playdate.update()
 	elseif screen == "intro" then
 		updateVN()
 		drawVN()
+	elseif screen == "game" then
+		updateGame()
+		drawGame()
 	end
 
 	playdate.drawFPS(0,0) -- FPS widget
