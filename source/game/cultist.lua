@@ -19,22 +19,30 @@ function Cultist:init(x, y, image)
     self.targetLocationY = 0
     self.isScared = false
     self.distanceToBeScared = 60
+    self.distanceToBeCalmAfterFear = 100
     self.speed = 1
     self.maxDeltaForRandomMovements = 10
     self:setCollideRect(0, 0, self:getSize())
     self:setZIndex(1)
 end
 
-function Cultist:update()
+function calmCultist(cultist)
+    cultist.isScared = false
+    cultist:generateRoamLocation()
+end
 
+function Cultist:update()
     -- Checking if the cultist is scared
     local playerX, playerY = getPlayerPosition()
-    self.isScared = (math.sqrt((playerX-self.x)^2 + (playerY-self.y)^2) <= self.distanceToBeScared)
+    if math.sqrt((playerX-self.x)^2 + (playerY-self.y)^2) <= self.distanceToBeScared then
+        self.isScared = true
+    elseif math.sqrt((playerX-self.x)^2 + (playerY-self.y)^2) > self.distanceToBeCalmAfterFear then
+        self.isScared = false
+    end
 
     if self.isScared then
         -- Cultist scared, fleeing away from the player
         self:runAway(playerX, playerY)
-        -- TODO
     elseif (self.hasReachedLocation and not self.isScared) then
         -- Cultist not scared, looking for a new location to roam
         self:generateRoamLocation()
@@ -73,6 +81,13 @@ function Cultist:runAway(playerX, playerY)
         normalizedY = (directionToFleeY)/math.abs(directionToFleeY)
     end
 
+    -- Checks if the movement is in bounds
+    if self.x + normalizedX * self.speed > maximumZoneX or self.x + normalizedX * self.speed < minimumZoneX then
+        normalizedX = 0
+    end
+    if self.y + normalizedY * self.speed > maximumZoneY or self.y + normalizedY * self.speed < minimumZoneY then
+        normalizedY = 0
+    end
     self:moveBy(normalizedX * self.speed, normalizedY * self.speed)
 end
 
