@@ -13,7 +13,7 @@ local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 -- title menu intro game
-screen = "title" --"title" -- TODO: Remettre sur title
+screen = "game" --"title" -- TODO: Remettre sur title
 
 levels = nil
 levelFiles = nil
@@ -23,21 +23,23 @@ local function loadGame()
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 
 	levelFiles = pd.file.listFiles("levels")
-  levels = {}
+	levels = {}
 
-  for i = 1, #levelFiles, 1 do
-    levels[i] = json.decodeFile("levels/" .. levelFiles[i])
-  end
+	for i = 1, #levelFiles, 1 do
+		levels[i] = json.decodeFile("levels/" .. levelFiles[i])
+	end
 
-	initTitle()
-	initializeGame("levels/1-nekoDorian.json")
+	--initTitle()
+	initializeGame(levels[1])
 end
 
 loadGame()
 
 function playdate.update()
+	gfx.clear()
+
 	playdate.timer.updateTimers()
-  	gfx.clear()
+	gfx.sprite.update()
 
 	if screen == "menu" then		
 		updateMenu()
@@ -53,5 +55,5 @@ function playdate.update()
 		drawGame()
 	end
 
-	playdate.drawFPS(0,0) -- FPS widget
 end
+

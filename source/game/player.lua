@@ -17,9 +17,9 @@ function Player:init(x, y, image)
     self:setCollideRect(0, 0, self:getSize())
     self:setZIndex(10)
     self.currentBloodPool = 0
-    self.maxBloodPool = 1000
-    self.bloodGainOnKill = 1000
-    self.bloodUsedOnDrop = 2
+    self.maxBloodPool = 100
+    self.bloodGainOnKill = 10
+    self.bloodUsedOnDrop = 1
 end
 
 function Player:manageRotation()
@@ -142,6 +142,10 @@ end
 
 function Player:getPosition()
     return self.x, self.y
+end
+
+function Player:getBloodPool()
+    return self.currentBloodPool
 end
 
 function Player:update()

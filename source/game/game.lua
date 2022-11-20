@@ -21,6 +21,9 @@ maximumZoneY = 240 - borderSize
 amountOfCultists = 40
 amountOfAliveCultists = amountOfCultists
 
+local playTimer = nil
+local timeToCompleteLevel = 120
+
 function initializeGame(jsonObject)
     -- Init player instance
     local playerImage = gfx.image.new("images/game/player")
@@ -39,17 +42,25 @@ function initializeGame(jsonObject)
     -- Init level
     initLevel(jsonObject)
 
+    playTimer = playdate.timer.new(timeToCompleteLevel * 1000, timeToCompleteLevel, 0)
+
     spawnCultists()
 end
 
 function drawGame()
-    gfx.sprite.update()
+    drawTime()
+    drawBloodJauge()
 end
 
 function updateGame()
     if playerInstance.currentBloodPool == 0 and amountOfAliveCultists == 0 then
         -- LOOSE
     end
+
+    
+	if playTimer.value == 0 then
+		-- LOOSE
+	end
 end
 
 function initLevel(jsonObject)
@@ -91,4 +102,26 @@ end
 
 function getPlayerPosition()
     return playerInstance:getPosition()
+end
+
+function drawTime()
+	gfx.setColor(gfx.kColorWhite)
+	gfx.fillRoundRect(2, 2, 48, 19, 2)
+	gfx.setColor(gfx.kColorBlack)
+	gfx.drawRoundRect(2, 2, 48, 19, 2)
+
+	local hourglassImage = gfx.image.new("images/game/hourglass")
+	gfx.image.draw(hourglassImage, 4, 4)
+	gfx.drawText(math.floor(playTimer.value), 24, 4)
+end
+
+function drawBloodJauge()
+	gfx.setColor(gfx.kColorWhite)
+	gfx.fillRoundRect(340, 2, 70, 20, 2)
+	gfx.setColor(gfx.kColorBlack)
+	gfx.drawRoundRect(340, 2, 70, 20, 2)
+
+	local bloodIconImage = gfx.image.new("images/game/bloodIcon")
+	gfx.image.draw(bloodIconImage, 340, 4)
+	gfx.drawTextAligned(playerInstance:getBloodPool() .. " L", 360, 4)
 end
