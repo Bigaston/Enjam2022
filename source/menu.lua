@@ -69,7 +69,7 @@ function updateMenu()
       menuUi:selectPreviousRow(true)
     end
 
-    if menuUi:getSelectedRow() == 1 and (pd.buttonIsPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight)) then
+    if menuUi:getSelectedRow() == 1 and (pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight)) then
       if menuChangeTimer == nil or not menuChangeTimer.active then
         menuChangeTimer = pd.timer.new(1000, 0, -400, pd.easingFunctions.inOutCubic)
         levelUi:setSelectedRow(1)
@@ -81,7 +81,7 @@ function updateMenu()
     end
 
     if menuUi:getSelectedRow() == langUi then
-      if pd.buttonJustPressed(pd.kButtonRight) or pd.buttonJustPressed(pd.kButtonLeft) or pd.buttonIsPressed(pd.kButtonA) then
+      if pd.buttonJustPressed(pd.kButtonRight) or pd.buttonJustPressed(pd.kButtonLeft) or pd.buttonJustPressed(pd.kButtonA) then
         if Language.getLang() == "fr" then
           Language.setLang("en")
         else
