@@ -24,7 +24,6 @@ function initializeGame()
 
     -- Init border
     local borderImage = gfx.image.new("images/game/border")
-    
     gfx.sprite.setBackgroundDrawingCallback(
         function(x, y, width, height)
             gfx.setClipRect(x, y, width, height)
