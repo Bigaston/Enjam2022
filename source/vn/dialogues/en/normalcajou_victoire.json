@@ -1,0 +1,21 @@
+[
+    {
+      "text": "Was this violence really necessary?", 
+      "speed": 1,
+      "author": "NORMALCAJOU",
+      "image": "images/vn/cajou_impassable.png"
+    },
+    {
+        "text": "You primitive animal, I offered you a gift\nand this is how you thank me.", 
+        "speed": 1,
+        "author": "NORMALCAJOU",
+        "image": "images/vn/cajou_condescendante.png",
+        "effect": "invert"
+    },
+    {
+        "text": "But I get it, you didn’t want it so I’m\ntaking it back. You can go.", 
+        "speed": 1,
+        "author": "NORMALCAJOU",
+        "image": "images/vn/cajou_impassable.png"
+    }
+  ]

@@ -1,29 +1,29 @@
 [
   {
-    "text": "Tiens, je me demande bien pourquoi on m'a\ndemande de venir a l'ecole un dimanche", 
+    "text": "Well, I wonder why they made me come\nback to school on a Sunday.", 
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_think"
   },
   {
-    "text": "A part pour une gamejam de qualite certaine,\nje n'en vois pas la raison.", 
+    "text": "The only good reason I could think of is\nto do an awesome gamejam.", 
     "speed": 1,
-    "author": "BIGAUCHO"
+    "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_think"
   },
   {
     "text": "RAH, RAH, RAH.",
     "speed": 2,
-    "author": "DEMON INCONNU"
+    "author": "UNKNOWN DEMON"
   },
   {
-    "text": "Mais, que m'arrive-t-il ?",
+    "text": "Wait, what is happening to me?",
     "speed": 1,
-    "author": "BIGAUCHO"
+    "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_colere.png"
   },
   {
-    "text": "Aaaah. Je me transforme en...\nrouleau-compresseur-garou !!",
+    "text": "Aaaah. I’m becoming a...\nrouleau-compresseur-garou!!",
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_detresse",

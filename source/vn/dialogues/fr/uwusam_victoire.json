@@ -1,0 +1,22 @@
+[
+    {
+      "text": "Je suis desole, je ne voulais pas paraitre impoli.", 
+      "speed": 1,
+      "author": "UWUSAM",
+      "image": "images/vn/uwusam_mignon.png"
+    },
+    {
+        "text": "Mais tu as decime ma secte alors\nje pense que tu es le pire ici.", 
+        "speed": 1,
+        "author": "UWUSAM",
+        "image": "images/vn/uwusam_determine.png",
+        "effect": "blink"
+    },
+    {
+        "text": "Degage tant qu’il est encore temps !", 
+        "speed": 1,
+        "author": "UWUSAM",
+        "image": "images/vn/uwusam_determine.png",
+        "effect": "invert"
+    }
+  ]
