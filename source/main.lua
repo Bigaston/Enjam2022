@@ -9,18 +9,19 @@ import "titleScreen"
 
 local gfx <const> = playdate.graphics
 
-screen = "title"
+screen = "game"
 
 local function loadGame()
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 	initTitle()
+	initializeGame("nekoLevel")
 end
 
 loadGame()
 
 function playdate.update()
 	playdate.timer.updateTimers()
-  gfx.clear()
+  	gfx.clear()
 
 	if screen == "title" then
 		updateTitle()
@@ -28,6 +29,9 @@ function playdate.update()
 	elseif screen == "intro" then
 		updateVN()
 		drawVN()
+	elseif screen == "game" then
+		updateGame()
+		drawGame()
 	end
 
 	playdate.drawFPS(0,0) -- FPS widget

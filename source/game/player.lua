@@ -13,7 +13,11 @@ function Player:init(x, y, image)
     self.rotationModifier = 5
     self:setImage(image)
     self:setCollideRect(0, 0, self:getSize())
-    self:setZIndex(2)
+    self:setZIndex(10)
+    self.currentBloodPool = 0
+    self.maxBloodPool = 100
+    self.bloodGainOnKill = 10
+    self.bloodUsedOnDrop = 2
 end
 
 function Player:manageRotation()
@@ -69,7 +73,7 @@ function Player:manageMovement()
     end
 end
 
--- Kills the collided cultist and spawns a plash
+-- Kills the collided cultist, spawns a splash, increases the blood pool
 function Player:manageKills(collisions)
     for index, collision in pairs(collisions) do
         local collidedObject = collision['other']
@@ -79,8 +83,35 @@ function Player:manageKills(collisions)
             splashSprite:moveTo(collidedObject.x, collidedObject.y)
             splashSprite:add()
             collidedObject:remove()
+            self:gainBlood()
         end
     end
+end
+
+-- Increases the blood pool by the value of a kill
+function Player:gainBlood()
+    self.currentBloodPool += self.bloodGainOnKill
+    if self.currentBloodPool > self.maxBloodPool then
+        self.currentBloodPool = self.maxBloodPool
+    end
+end
+
+-- Manages the blood drop and blood stock
+function Player:manageBloodDrop()
+    local isOnBloodDrop = false
+
+    if (pd.buttonIsPressed(pd.kButtonDown)) and (self.currentBloodPool >= self.bloodUsedOnDrop) then --and (not isOnBloodDrop) then
+        self:dropBlood()
+        self.currentBloodPool -= self.bloodUsedOnDrop
+    end
+end
+
+-- Visually drops blood
+function Player:dropBlood()
+    local bloodDropImage = gfx.image.new("images/game/bloodDrop")
+    local bloodDropSprite = gfx.sprite.new(bloodDropImage)
+    bloodDropSprite:moveTo(self.x, self.y)
+    bloodDropSprite:add()
 end
 
 function Player:collisionResponse()
@@ -95,4 +126,5 @@ function Player:update()
     Player.super.update(self)
     self:manageRotation()
     self:manageMovement()
+    self:manageBloodDrop()
 end
