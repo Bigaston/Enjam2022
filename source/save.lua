@@ -6,16 +6,19 @@ local levelWinInfo = {}
 
 function Save.init()
   local readData = pd.datastore.read("levelWin")
+  printTable(readData)
   if readData == nil then
     levelWinInfo = {}
   else
     levelWinInfo = readData
   end
+
+  printTable(levelWinInfo)
 end
 
 function Save.newLevelWin(levelName)
   levelWinInfo[levelName] = true
-  pd.datastore.write("levelWin", levelWinInfo)
+  pd.datastore.write(levelWinInfo, "levelWin")
 end
 
 function Save.isLevelWin(levelName)
