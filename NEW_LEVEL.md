@@ -15,7 +15,8 @@ If you want to add a level, you can add a JSON file in `levels` folder based on 
 ```
 
 ## Add some dialogues
-If you want to add a dialogue, put a JSON file in `vn/dialogues/en` and on `vn/dialogues/fr` based on this one
+If you want to add a dialogue, put a JSON file in `vn/dialogues/en` and on `vn/dialogues/fr` based on this one.
+For the image, you can use [ditherit](https://ditherit.com/)
 ```JSON
 [
   {
