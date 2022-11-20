@@ -1,6 +1,6 @@
-name=Template
-author=You
+name=Le Rouleau Compresseur Garou
+author=La Dream Team
 description=This is template project
-bundleID=com.organization.package
+bundleID=me.bigaston.rouleaucompresseur
 version=0.0.1
 buildNumber=1
