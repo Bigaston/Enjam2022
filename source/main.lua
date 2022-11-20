@@ -47,6 +47,12 @@ function playdate.update()
 	elseif screen == "introVN" then
 		updateIntroVN()
 		drawIntroVN()
+	elseif screen == "looseVN" then
+		updateWinVN()
+		drawWinVN()
+	elseif screen == "winVN" then
+		updateLooseVN()
+		drawLooseVN()
 	elseif screen == "game" then
 		updateGame()
 		drawGame()

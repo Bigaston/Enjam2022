@@ -47,11 +47,9 @@ end
 
 function initLevel(level)
     -- Load background pentacle
-    local levelImage = gfx.image.new("images/levels/"..level)
+    local levelImage = gfx.image.new(level.backgroundImage)
     local pentacleSprite = Pentacle(levelImage)
     pentacleSprite:add()
-
-
 end
 
 function spawnCultists()
