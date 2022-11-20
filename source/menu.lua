@@ -164,7 +164,7 @@ function updateMenu()
     end
 
     -- Start a level
-    if pd.buttonJustPressed(pd.kButtonA) then
+    if pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight) then
       initIntroVN(levels[levelUi:getSelectedRow()])
       screen = "introVN"
       Audio.playUI("buttons_navigation_click")
