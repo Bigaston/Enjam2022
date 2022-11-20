@@ -122,6 +122,7 @@ function Player:dropBlood()
     bloodDropSprite:add()
 end
 
+-- Checks if the player is currently on a checkpoint and validates it if so
 function Player:checkCheckpoints()
     local collisions = gfx.sprite.overlappingSprites(self)
 
