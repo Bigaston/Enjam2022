@@ -11,6 +11,7 @@ import "vn/winVN"
 import "titleScreen"
 import "menu"
 import "audio"
+import "save"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -29,6 +30,7 @@ local function loadGame()
 	-- Initiate the libs
 	Language.init()
 	Audio.init()
+	Save.init()
 
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 

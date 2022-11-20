@@ -68,7 +68,11 @@ function initMenu()
 
     gfx.drawRoundRect(x + 40, y, width-40, height, 5)
 
-    gfx.drawText(levels[row].levelName, x + 45, y + 7)
+    if Save.isLevelWin(levels[row].levelName) then
+      gfx.drawText(levels[row].levelName, x + 45, y + 7)
+    else
+      gfx.drawText("???", x + 45, y + 7)
+    end
   end
 
   function levelUi:drawSectionHeader(section, x, y, width, height)
