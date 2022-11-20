@@ -50,7 +50,9 @@ end
 function Player:manageMovement()
     if Save.getOption("onehand") then
         local a,b,c = playdate.readAccelerometer()
-        speed = b * -5
+        if b ~= nil then
+            speed = b * -5
+        end
     else
         local change, acceleratedChange = playdate.getCrankChange()
         speed = change/5
