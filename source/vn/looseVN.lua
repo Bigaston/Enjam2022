@@ -3,23 +3,29 @@ import "vn/background"
 import "language"
 
 local pd <const> = playdate
-local gfx <const> = pd.graphics
 
 local dialogue
 local background
 
-function initVN(level)
+function initIntroVN(level)
   dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/intro.json")
-  background = Background("images/vn/cinematic_background")
+  background = Background("images/vn/end_background")
+  
+  dialogue.skipable = false
   dialogue:open()
+
+  function dialogue:closeCallback()
+    initializeGame(level)
+    screen = "game"
+  end
 end
 
-function updateVN()
+function updateIntroVN()
   dialogue:update()
   background:update()
 end
 
-function drawVN()
+function drawIntroVN()
   background:draw()
   dialogue:draw()
 end
