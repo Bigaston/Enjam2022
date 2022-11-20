@@ -8,18 +8,18 @@ local gfx <const> = pd.graphics
 local dialogue
 local background
 
-function initVN(level)
+function initIntroVN(level)
   dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/intro.json")
   background = Background("images/vn/cinematic_background")
   dialogue:open()
 end
 
-function updateVN()
+function updateIntroVN()
   dialogue:update()
   background:update()
 end
 
-function drawVN()
+function drawIntroVN()
   background:draw()
   dialogue:draw()
 end
