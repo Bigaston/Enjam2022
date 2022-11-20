@@ -5,6 +5,7 @@ import "CoreLibs/timer"
 
 import "game/player"
 import "game/cultist"
+import "game/pentacle"
 
 local gfx <const> = playdate.graphics
 
@@ -16,7 +17,7 @@ maximumZoneY = 240 - borderSize
 
 amountOfCultists = 40
 
-function initializeGame()
+function initializeGame(level)
     -- Init player instance
     local playerImage = gfx.image.new("images/game/player")
     playerInstance = Player(200, 120, playerImage)
@@ -31,6 +32,9 @@ function initializeGame()
         end
     )
 
+    -- Init level
+    initLevel(level)
+
     spawnCultists()
 end
 
@@ -39,6 +43,15 @@ function drawGame()
 end
 
 function updateGame()
+end
+
+function initLevel(level)
+    -- Load background pentacle
+    local levelImage = gfx.image.new("images/levels/"..level)
+    local pentacleSprite = Pentacle(levelImage)
+    pentacleSprite:add()
+
+
 end
 
 function spawnCultists()

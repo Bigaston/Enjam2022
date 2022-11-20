@@ -14,7 +14,7 @@ screen = "game"
 local function loadGame()
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 	initTitle()
-	initializeGame()
+	initializeGame("nekoLevel")
 end
 
 loadGame()

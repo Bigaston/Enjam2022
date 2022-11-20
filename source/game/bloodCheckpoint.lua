@@ -1,10 +1,10 @@
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
-class("BloodDrop").extends(gfx.sprite)
+class("BloodCheckpoint").extends(gfx.sprite)
 
-function BloodDrop:init(x, y, image)
-    BloodDrop.super.init(self)
+function BloodCheckpoint:init(x, y, image)
+    BloodCheckpoint.super.init(self)
     self.x = x
     self.y = y
     self:moveTo(self.x, self.y)
