@@ -4,6 +4,10 @@ Save = {}
 
 local levelWinInfo = {}
 local config = {}
+local defaultConfig <const> = {
+  onehand = false,
+  timer = true
+}
 
 function Save.init()
   local readData = pd.datastore.read("levelWin")
@@ -41,7 +45,7 @@ end
 
 function Save.getOption(option)
   if config[option] == nil then
-    return false
+    return defaultConfig[option]
   else
     return config[option]
   end
