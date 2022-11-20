@@ -24,3 +24,6 @@ A demon cursed you into being a steam-werewolf-roller. In order to get your huma
 
 ## Custom levels
 You can add some customs levels with [these info](./NEW_LEVEL.md)
+
+## TODO: One Hand Mode
+Add a button to reset accelerometer
