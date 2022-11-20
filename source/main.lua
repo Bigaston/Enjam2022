@@ -18,16 +18,21 @@ local gfx <const> = pd.graphics
 -- title menu intro game
 screen = "title" --"title" -- TODO: Remettre sur title
 
+-- All the levels informations
 levels = nil
+-- All the levels json files names
 levelFiles = nil
+-- the data of the current level
 currentLevel = nil
 
 local function loadGame()
+	-- Initiate the libs
 	Language.init()
 	Audio.init()
 
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 
+	-- Gather all the informations about the levels
 	levelFiles = pd.file.listFiles("levels")
 	levels = {}
 
@@ -35,6 +40,7 @@ local function loadGame()
 		levels[i] = json.decodeFile("levels/" .. levelFiles[i])
 	end
 
+	-- Init the title screen
 	initTitle()
 
 	--initGame()
@@ -44,10 +50,13 @@ loadGame()
 
 function playdate.update()
 	gfx.clear()
+
+	-- Update the current music
 	Audio.playMusic()
 	
 	playdate.timer.updateTimers()
 
+	-- Draw/update the good screen
 	if screen == "menu" then		
 		updateMenu()
 		drawMenu()
@@ -67,6 +76,5 @@ function playdate.update()
 		updateGame()
 		drawGame()
 	end
-
 end
 

@@ -1,4 +1,6 @@
-<img src="https://media.giphy.com/media/QhNgpDotBASjWj7asJ/giphy.gif" width="800" height="480" />
+You're playing a cursed steamroller that must kill cultists to summon the demon that cursed you.
+
+A demon cursed you into being a steam-werewolf-roller. In order to get your human form back, you have to roll over their minions, suck their blood in and paint the demonic symbol on the ground with it. 
 
 # Installation:  
 0. **Unlock** `Build and Run (Simulator).ps1` file if it's locked: open properties and click unlock in the bottom of the window.  
@@ -19,3 +21,6 @@
     * Change keybind for `Tasks: Run Build Task` (I've changed to **F5**)  
 0. Your can find your `main.lua` file inside `source` folder. Press your "Run Build Task" button, you should see "Template" text in playdate simulator.  
 0. Feel free to delete `dvd.lua` and all dvd-related lines from `main.lua` (marked `-- DEMOO`)
+
+## Custom levels
+You can add some customs levels with [these info](./NEW_LEVEL.md)

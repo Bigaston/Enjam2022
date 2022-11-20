@@ -6,13 +6,15 @@ local gfx <const> = pd.graphics
 
 local authorFont = gfx.font.new("fonts/Cop")
 
-local openingTime <const> = 500
-local frameBetweenText <const> = 1
-local frameToSkipDialogue <const> = 30
+
+local openingTime <const> = 500 -- The time the dialogue box take to open
+local frameBetweenText <const> = 1 -- The default number of frame between each letters
+local frameToSkipDialogue <const> = 30 -- The number of frame you need to keep B pushed to skip a dialogue
 
 -- Class that displays dialogue box
 class('Dialogue').extends()
 
+-- Load a dialogue from a JSON file like vn/dialogues/fr/intro.json
 function Dialogue.loadDialogueFromJSON(path)
   local jsonFile = json.decodeFile(path)
   return Dialogue(jsonFile)
@@ -22,28 +24,28 @@ end
 function Dialogue:init(dialogue) 
   Dialogue.super.init(self)
 
-  if type(dialogue) == "string" then
-    self.tableDialogue = {dialogue}
-    self.text = dialogue
-  else
-    self.tableDialogue = dialogue
-    self.text = dialogue[1].text
-  end
+  -- Table that contains all the dialogue step
+  self.tableDialogue = dialogue
+  self.text = dialogue[1].text
 
+  -- The current information about the dialogue
   self.currentImg = nil
   self.currentInvertedImg = nil
   self.currentAudio = nil
   self.currentAuthor = nil
   self.currentStep = 1
 
+  -- Information about text animation
   self.textAnimation = false
   self.textDisplay = false
   self.textElapsedFrame = 0
   self.textDisplayChar = 0
 
+  -- Information about dialogue box animation
   self.opened = false
   self.openAnimation = false
 
+  -- Keep the number of frame since the button is press to skip the dialogue
   self.skipFrameKeep = 0
 
   -- Can be surcharged to launch a function when the dialogue is finished
@@ -60,7 +62,9 @@ function Dialogue:open()
   self.openAnimation = true
 end
 
+-- Start the text animation (for a new step or manualy)
 function Dialogue:animateText()
+  -- If the speed is different
   if self.tableDialogue[self.currentStep].speed ~= nil then
     self.textElapsedFrame = self.tableDialogue[self.currentStep].speed
   else
@@ -99,6 +103,7 @@ function Dialogue:animateText()
   end
 end
 
+-- Close the dialogue (skip or at the end)
 function Dialogue:close()
   self.opened = false
   self.textDisplay = false
@@ -113,6 +118,7 @@ function Dialogue:close()
   end
 end
 
+-- Called each frame, for animation or button info
 function Dialogue:update()
   if self.openAnimation then
     if not self.timerX.active then
@@ -123,6 +129,7 @@ function Dialogue:update()
     end
   end
 
+  -- Display the text animation
   if self.textAnimation then
     if self.textElapsedFrame == 0 then
       if self.tableDialogue[self.currentStep].speed ~= nil then
@@ -143,16 +150,21 @@ function Dialogue:update()
     end
   end
 
+  -- Handle A button
   if pd.buttonJustPressed(pd.kButtonA) then
+    -- If it's during open animation, skip anim and text anim
     if self.openAnimation then
       self.openAnimation = false
       self.opened = true
 
       self.textAnimation = false
       self.textDisplay = true
+    -- Skip text anim
     elseif self.textAnimation then
       self.textAnimation = false
       self.textDisplay = true
+
+    -- Go to next step
     else
       if self.currentStep == #self.tableDialogue then
         self:close()
@@ -165,10 +177,12 @@ function Dialogue:update()
     end
   end
 
+  -- Reset skip frame
   if pd.buttonJustReleased(pd.kButtonB) then
     self.skipFrameKeep = 0
   end
 
+  -- Start skip frame
   if pd.buttonIsPressed(pd.kButtonB) then
     self.skipFrameKeep +=1 
 
@@ -178,15 +192,19 @@ function Dialogue:update()
   end
 end
 
+-- Display the dialogue box
 function Dialogue:draw()
+  -- If during the open animation
   if self.openAnimation then
     gfx.setColor(gfx.kColorWhite)
     gfx.fillRoundRect(200-self.timerX.value, 200 - self.timerY.value, self.timerX.value * 2, self.timerY.value * 2, 5)
     gfx.setColor(gfx.kColorBlack)
     gfx.drawRoundRect(200-self.timerX.value, 200 - self.timerY.value, self.timerX.value * 2, self.timerY.value * 2, 5)
+  -- Animation is finished
   elseif self.opened then
     -- Display IMG if needed
     if self.currentImg ~= nil then
+      -- Shaky effect
       if self.tableDialogue[self.currentStep].effect == "shake" then
         if self._effectShakeX == nil then
           self._effectShakeX = 0
@@ -198,8 +216,11 @@ function Dialogue:draw()
 
         self.currentImg:draw(10-self._effectShakeX, 20 - self._effectShakeY)
 
+      -- Inverted effect
       elseif self.tableDialogue[self.currentStep].effect == "invert" then
         self.currentInvertedImg:draw(10, 20)
+      
+      -- Blink effect
       elseif self.tableDialogue[self.currentStep].effect == "blink" then
         if self._effectBlinkFrame == nil then
           self._effectBlinkFrame = 3
@@ -235,6 +256,7 @@ function Dialogue:draw()
       authorFont:drawText(self.currentAuthor, 5, 152)
     end
 
+    -- Draw text box
     gfx.setColor(gfx.kColorWhite)
     gfx.fillRoundRect(2, 160, 396, 78, 5)
     gfx.setColor(gfx.kColorBlack)
@@ -255,6 +277,7 @@ function Dialogue:draw()
     end
   end
 
+  -- Animate/draw the text
   if self.textAnimation then
     gfx.drawText(string.sub(self.text, 0, self.textDisplayChar), 5, 163)
   elseif self.textDisplay then
