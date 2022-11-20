@@ -1,0 +1,10 @@
+{
+    "levelName": "UwUSam",
+    "checkpoints": [ [57,136], [45,119], [42,97], [46,76], [63,64], [86,62], [106,69], [124,83],
+    [157,112], [183,111], [215,112], [247,112],
+    [283,82], [300,68], [321,61], [344,63], [362,76], [364,95], [362,69], [350,134]],
+    "backgroundImage": "images/levels/4-uwusam",
+    "winDialogue": "uwusam_victoire.json",
+    "looseDialogue": "uwusam_defaite.json",
+    "difficulty": 4
+  }

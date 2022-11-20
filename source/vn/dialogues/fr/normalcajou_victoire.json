@@ -3,22 +3,22 @@
       "text": "Etait-ce vraiment utile d'user de tant de violence ?", 
       "speed": 1,
       "author": "NORMALCAJOU",
-      "image": "images/vn/cajou_impassable.png",
+      "image": "images/vn/normalcajou_impassable.png",
       "audio": "sounds/vn/normalcajou_victoire_1.wav"
     },
     {
-        "text": "Animal primitif que tu es, c'est ainsi\nque tu me remercies de mon cadeau.", 
+        "text": "Animal primitif que tu es, c'est ainsi que tu me\n remercies de mon cadeau.", 
         "speed": 1,
         "author": "NORMALCAJOU",
-        "image": "images/vn/cajou_condescendante.png",
+        "image": "images/vn/normalcajou_condescendante.png",
         "effect": "invert",
         "audio": "sounds/vn/normalcajou_victoire_2.wav"
     },
     {
-        "text": "Mais je comprends, tu n'en voulais pas\ndonc je le reprends. Va maintenant.", 
+        "text": "Mais je comprends, tu n'en voulais pas donc je le\n reprends. Va maintenant.", 
         "speed": 1,
         "author": "NORMALCAJOU",
-        "image": "images/vn/cajou_impassable.png",
+        "image": "images/vn/normalcajou_impassable.png",
         "audio": "sounds/vn/normalcajou_victoire_3.wav"
     }
   ]

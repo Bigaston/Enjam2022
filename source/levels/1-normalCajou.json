@@ -1,0 +1,11 @@
+{
+    "levelName": "NormalCajou",
+    "checkpoints": [ [136,63], [168,63], [200,64], [232,65], [262,64],
+    [272,82], [272,107], [272,136], [273,167],
+    [252,175], [221,177], [183,176], [148,176],
+    [128,168], [128,138], [128,109], [127,82]],
+    "backgroundImage": "images/levels/1-normalCajou",
+    "winDialogue": "normalcajou_victoire.json",
+    "looseDialogue": "normalcajou_defaite.json",
+    "difficulty": 1
+  }
