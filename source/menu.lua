@@ -23,6 +23,7 @@ local leftRightImg = gfx.image.new("images/menu/leftright")
 function initMenu()
   menuUi = pd.ui.gridview.new(350, 32)
 
+  menuUi:setSectionHeaderHeight(30)
   menuUi:setNumberOfRows(2)
   menuUi:setNumberOfColumns(1)
   menuUi:setCellPadding(0, 0, 0, 10)
@@ -42,7 +43,12 @@ function initMenu()
     end
   end
 
+  function menuUi:drawSectionHeader(section, x, y, width, height)
+    gfx.drawText("*"..Language.getString("menu.title") .. "*", x + 40, y + 8)
+  end
+
   levelUi = pd.ui.gridview.new(350, 32)
+  levelUi:setSectionHeaderHeight(30)
   levelUi:setNumberOfRows(#levels)
   levelUi:setNumberOfColumns(1)
   levelUi:setCellPadding(0, 0, 0, 10)
@@ -55,6 +61,10 @@ function initMenu()
     gfx.drawRoundRect(x + 40, y, width-40, height, 5)
 
     gfx.drawText(levels[row].levelName, x + 45, y + 7)
+  end
+
+  function levelUi:drawSectionHeader(section, x, y, width, height)
+    gfx.drawText("*"..Language.getString("menu.level").."*", x + 40, y + 8)
   end
 end
 

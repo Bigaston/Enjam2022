@@ -62,7 +62,7 @@ function Audio.playMusic()
     currentPlayedMusic:stop()
     currentPlayedMusicFile = soundFile[screen]
     currentPlayedMusic:load(soundFile[screen])
-    currentPlayedMusic:play()
+    currentPlayedMusic:play(0)
     currentPlayedMusic:setVolume(1)--soundVolume[screen])
   end
 end
