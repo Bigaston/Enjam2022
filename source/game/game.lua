@@ -7,6 +7,7 @@ import "game/player"
 import "game/cultist"
 import "game/pentacle"
 import "game/bloodCheckpoint"
+import "vn/looseVN"
 
 local gfx <const> = playdate.graphics
 numberOfCheckpoints = 0
@@ -49,10 +50,13 @@ end
 function updateGame()
     if playerInstance.currentBloodPool == 0 and amountOfAliveCultists == 0 then
         -- LOOSE
+        initLooseVN()
+        screen = "looseVN"
     end
 end
 
 function initLevel(jsonObject)
+    printTable(jsonObject)
     -- Load background pentacle
     local levelImage = gfx.image.new(jsonObject.backgroundImage)
     local pentacleSprite = Pentacle(levelImage)

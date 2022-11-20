@@ -6,6 +6,8 @@ import "CoreLibs/timer"
 import "language"
 import "game/game"
 import "vn/introVN"
+import "vn/looseVN"
+import "vn/winVN"
 import "titleScreen"
 import "menu"
 
@@ -17,6 +19,7 @@ screen = "title" --"title" -- TODO: Remettre sur title
 
 levels = nil
 levelFiles = nil
+currentLevel = nil
 
 local function loadGame()
 	Language.init()
@@ -30,7 +33,6 @@ local function loadGame()
   end
 
 	initTitle()
-	initializeGame("levels/1-nekoDorian.json")
 end
 
 loadGame()
@@ -48,6 +50,12 @@ function playdate.update()
 	elseif screen == "introVN" then
 		updateIntroVN()
 		drawIntroVN()
+	elseif screen == "winVN" then
+		updateWinVN()
+		drawWinVN()
+	elseif screen == "looseVN" then
+		updateLooseVN()
+		drawLooseVN()
 	elseif screen == "game" then
 		updateGame()
 		drawGame()
