@@ -25,7 +25,7 @@ currentLevel = nil
 local function loadGame()
 	Language.init()
 	Audio.init()
-	
+
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 
 	levelFiles = pd.file.listFiles("levels")
