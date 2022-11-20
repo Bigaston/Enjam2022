@@ -1,0 +1,21 @@
+[
+    {
+      "text": "Meow-ow-uh-ow.", 
+      "speed": 1,
+      "author": "NEKODORIAN",
+      "image": "images/vn/nekodorian_triste.png"
+    },
+    {
+        "text": "Who's gonna give me my smoked salmon now?", 
+        "speed": 1,
+        "author": "NEKODORIAN",
+        "image": "images/vn/nekodorian_triste.png",
+        "effect": "invert"
+    },
+    {
+        "text": "Ok, you go get some for me, I'll\ngive you back your legs, deal?", 
+        "speed": 1,
+        "author": "NEKODORIAN",
+        "image": "images/vn/nekodorian_mignon.png"
+     }
+  ]

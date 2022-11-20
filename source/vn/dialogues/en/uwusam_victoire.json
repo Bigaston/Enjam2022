@@ -1,0 +1,22 @@
+[
+    {
+      "text": "I’m sorry, I didn’t want to be impolite…", 
+      "speed": 1,
+      "author": "UWUSAM",
+      "image": "images/vn/uwusam_mignon.png"
+    },
+    {
+        "text": "But you killed my followers so I think\nyou’re the worst here.", 
+        "speed": 1,
+        "author": "UWUSAM",
+        "image": "images/vn/uwusam_determine.png",
+        "effect": "blink"
+    },
+    {
+        "text": "Run while you still can!", 
+        "speed": 1,
+        "author": "UWUSAM",
+        "image": "images/vn/uwusam_determine.png",
+        "effect": "invert"
+    }
+  ]
