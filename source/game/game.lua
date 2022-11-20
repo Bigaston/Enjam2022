@@ -6,8 +6,11 @@ import "CoreLibs/timer"
 import "game/player"
 import "game/cultist"
 import "game/pentacle"
+import "game/bloodCheckpoint"
 
 local gfx <const> = playdate.graphics
+numberOfCheckpoints = 0
+checkpointsReached = 0
 
 borderSize = 2
 minimumZoneX = borderSize
@@ -16,8 +19,9 @@ minimumZoneY = borderSize
 maximumZoneY = 240 - borderSize
 
 amountOfCultists = 40
+amountOfAliveCultists = amountOfCultists
 
-function initializeGame(level)
+function initializeGame(jsonObject)
     -- Init player instance
     local playerImage = gfx.image.new("images/game/player")
     playerInstance = Player(200, 120, playerImage)
@@ -33,7 +37,7 @@ function initializeGame(level)
     )
 
     -- Init level
-    initLevel(level)
+    initLevel(jsonObject)
 
     spawnCultists()
 end
@@ -43,13 +47,28 @@ function drawGame()
 end
 
 function updateGame()
+    if playerInstance.currentBloodPool == 0 and amountOfAliveCultists == 0 then
+        -- LOOSE
+    end
 end
 
-function initLevel(level)
+function initLevel(jsonObject)
     -- Load background pentacle
-    local levelImage = gfx.image.new(level.backgroundImage)
+    local levelImage = gfx.image.new(jsonObject.backgroundImage)
     local pentacleSprite = Pentacle(levelImage)
     pentacleSprite:add()
+
+    -- Checkpoints management
+    local checkpointImage = gfx.image.new("images/game/bloodCheckpoint")
+    checkpoints = jsonObject.checkpoints
+    numberOfCheckpoints = #checkpoints
+    checkpointsReached = 0
+    gameIsWon = false
+    for i = 1, numberOfCheckpoints, 1 do
+        local checkpointSprite = BloodCheckpoint(checkpoints[i][1], checkpoints[i][2], checkpointImage)
+        checkpointSprite:add()
+    end
+
 end
 
 function spawnCultists()
@@ -66,7 +85,6 @@ function spawnCultists()
         end
 
         local cultistInstance = Cultist(spawnX, spawnY, cultistImage)
-        table.insert(cultistInstance, cultistArray)
         cultistInstance:add()
     end
 end

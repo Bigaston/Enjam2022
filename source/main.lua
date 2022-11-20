@@ -30,6 +30,7 @@ local function loadGame()
   end
 
 	initTitle()
+	initializeGame("levels/1-nekoDorian.json")
 end
 
 loadGame()
