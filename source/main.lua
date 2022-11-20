@@ -10,6 +10,7 @@ import "vn/looseVN"
 import "vn/winVN"
 import "titleScreen"
 import "menu"
+import "audio"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -23,6 +24,8 @@ currentLevel = nil
 
 local function loadGame()
 	Language.init()
+	Audio.init()
+	
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 
 	levelFiles = pd.file.listFiles("levels")
