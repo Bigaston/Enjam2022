@@ -3,30 +3,35 @@
     "text": "Well, I wonder why they made me come\nback to school on a Sunday.", 
     "speed": 1,
     "author": "BIGAUCHO",
-    "image": "images/vn/bigaucho_think"
+    "image": "images/vn/bigaucho_think",
+    "audio": "sounds/vn/bigaston_intro_1.wav"
   },
   {
     "text": "The only good reason I could think of is\nto do an awesome gamejam.", 
     "speed": 1,
     "author": "BIGAUCHO",
-    "image": "images/vn/bigaucho_think"
+    "image": "images/vn/bigaucho_think",
+    "audio": "sounds/vn/bigaston_intro_2.wav"
   },
   {
     "text": "RAH, RAH, RAH.",
     "speed": 2,
-    "author": "UNKNOWN DEMON"
+    "author": "UNKNOWN DEMON",
+    "audio": "sounds/vn/uwusam_intro.wav"
   },
   {
     "text": "Wait, what is happening to me?",
     "speed": 1,
     "author": "BIGAUCHO",
-    "image": "images/vn/bigaucho_colere.png"
+    "image": "images/vn/bigaucho_colere.png",
+    "audio": "sounds/vn/bigaston_intro_3.wav"
   },
   {
     "text": "Aaaah. I’m becoming a...\nrouleau-compresseur-garou!!",
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_detresse",
-    "effect": "blink"
+    "effect": "blink",
+    "audio": "sounds/vn/bigaston_intro_4.wav"
   }
 ]
