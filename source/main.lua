@@ -30,7 +30,6 @@ local function loadGame()
   end
 
 	initTitle()
-	-- initMenu() -- TODO: Degager ça
 end
 
 loadGame()

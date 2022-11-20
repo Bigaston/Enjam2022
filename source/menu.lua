@@ -108,7 +108,7 @@ function updateMenu()
     end
 
     if pd.buttonJustPressed(pd.kButtonA) then
-      initIntroVN(levelFiles[levelUi:getSelectedRow()])
+      initIntroVN(levels[levelUi:getSelectedRow()])
       screen = "introVN"
     end
   end
