@@ -9,16 +9,18 @@
     "text": "A part pour une gamejam de qualite certaine,\nje n'en vois pas la raison.", 
     "speed": 1,
     "author": "BIGAUCHO"
+    "image": "images/vn/bigaucho_think"
   },
   {
     "text": "RAH, RAH, RAH.",
     "speed": 2,
-    "author": "DEMON INCONNUS"
+    "author": "DEMON INCONNU"
   },
   {
     "text": "Mais, que m'arrive-t-il ?",
     "speed": 1,
     "author": "BIGAUCHO"
+    "image": "images/vn/bigaucho_colere.png"
   },
   {
     "text": "Aaaah. Je me transforme en...\nrouleau-compresseur-garou !!",
