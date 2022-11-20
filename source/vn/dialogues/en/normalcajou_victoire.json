@@ -1,13 +1,13 @@
 [
     {
-      "text": "Etait-ce vraiment utile d’user de tant de violence ?", 
+      "text": "Was this violence really necessary?", 
       "speed": 1,
       "author": "NORMALCAJOU",
       "image": "images/vn/cajou_impassable.png",
       "audio": "sounds/vn/normalcajou_victoire_1.wav"
     },
     {
-        "text": "Animal primitif que tu es, c’est ainsi\nque tu me remercies de mon cadeau.", 
+        "text": "You primitive animal, I offered you a gift\nand this is how you thank me.", 
         "speed": 1,
         "author": "NORMALCAJOU",
         "image": "images/vn/cajou_condescendante.png",
@@ -15,7 +15,7 @@
         "audio": "sounds/vn/normalcajou_victoire_2.wav"
     },
     {
-        "text": "Mais je comprends, tu n’en voulais pas\ndonc je le reprends. Va maintenant.", 
+        "text": "But I get it, you didn’t want it so I’m\ntaking it back. You can go.", 
         "speed": 1,
         "author": "NORMALCAJOU",
         "image": "images/vn/cajou_impassable.png",

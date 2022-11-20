@@ -1,13 +1,13 @@
 [
     {
-      "text": "Meow-ow-uh-ow.", 
+      "text": "Miaou-argh-ou.", 
       "speed": 1,
       "author": "NEKODORIAN",
       "image": "images/vn/nekodorian_triste.png",
       "audio": "sounds/vn/nekodorian_victoire_1.wav"
     },
     {
-        "text": "Who's gonna give me my smoked salmon now?", 
+        "text": "Qui va me fournir en saumon fume maintenant ?", 
         "speed": 1,
         "author": "NEKODORIAN",
         "image": "images/vn/nekodorian_triste.png",
@@ -15,7 +15,7 @@
         "audio": "sounds/vn/nekodorian_victoire_2.wav"
     },
     {
-        "text": "Ok, you go get some for me, I'll\ngive you back your legs, deal?", 
+        "text": "Ok, si tu vas m’en chercher, je te\nrends tes jambes, on fait ça ?", 
         "speed": 1,
         "author": "NEKODORIAN",
         "image": "images/vn/nekodorian_mignon.png",
