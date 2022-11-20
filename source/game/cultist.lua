@@ -76,6 +76,7 @@ function Cultist:runAway(playerX, playerY)
     self:moveBy(normalizedX * self.speed, normalizedY * self.speed)
 end
 
+-- Moves to targetLocation and checks if the cultists has reached the location
 function Cultist:roamToTarget()
     local normalizedX = 0
     local normalizedY = 0
