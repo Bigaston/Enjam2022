@@ -6,21 +6,27 @@ import "audio"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
+
+-- Main menu UI screen
 local menuUi
 local menuUiText <const> = {"menu.level", "menu.lang"}
 local langUi = 2
 
+-- Level select UI
 local levelUi
 local levelUiText <const> = {"menu.level1", "menu.level2", "menu.level3", "menu.level4"}
 
+-- Move between the 2 screens
 local menuScreen = "base"
 local menuChangeTimer
 local menuDifferentY = 0
 
+-- Import the needed images
 local selectorImg = gfx.image.new("images/menu/selector")
 local leftRightImg = gfx.image.new("images/menu/leftright")
 
 function initMenu()
+  -- Setup the UI for the main menu using PlayDate GridVew Elements
   menuUi = pd.ui.gridview.new(350, 32)
 
   menuUi:setSectionHeaderHeight(30)
@@ -43,10 +49,12 @@ function initMenu()
     end
   end
 
+  -- Setup the title
   function menuUi:drawSectionHeader(section, x, y, width, height)
     gfx.drawText("*"..Language.getString("menu.title") .. "*", x + 40, y + 8)
   end
 
+  -- Setup the UI for the level selection using PlayDate GridVew Elements
   levelUi = pd.ui.gridview.new(350, 32)
   levelUi:setSectionHeaderHeight(30)
   levelUi:setNumberOfRows(#levels)
@@ -73,7 +81,9 @@ function updateMenu()
     menuDifferentY = menuChangeTimer.value
   end
 
+  -- Main menu screen
   if menuScreen == "base" then
+    -- Move in the menu
     if pd.buttonJustPressed(pd.kButtonDown) then
       menuUi:selectNextRow(true)
       Audio.playUI("buttons_navigation_down")
@@ -82,6 +92,7 @@ function updateMenu()
       Audio.playUI("buttons_navigation_up")
     end
 
+    -- Go to the next screen
     if menuUi:getSelectedRow() == 1 and (pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight)) then
       if menuChangeTimer == nil or not menuChangeTimer.active then
         menuChangeTimer = pd.timer.new(1000, 0, -400, pd.easingFunctions.inOutCubic)
@@ -94,6 +105,7 @@ function updateMenu()
       end
     end
 
+    -- Change the language
     if menuUi:getSelectedRow() == langUi then
       if pd.buttonJustPressed(pd.kButtonRight) or pd.buttonJustPressed(pd.kButtonLeft) or pd.buttonJustPressed(pd.kButtonA) then
         Audio.playUI("buttons_navigation_click")
@@ -104,7 +116,9 @@ function updateMenu()
         end
       end
     end
+  -- Level choose
   elseif menuScreen == "level" then
+    -- Move inside
     if pd.buttonJustPressed(pd.kButtonDown) then
       levelUi:selectNextRow(true)
       Audio.playUI("buttons_navigation_down")
@@ -113,6 +127,7 @@ function updateMenu()
       Audio.playUI("buttons_navigation_up")
     end
 
+    -- Back to the main menu
     if pd.buttonJustPressed(pd.kButtonB) or pd.buttonJustPressed(pd.kButtonLeft) then
       if menuChangeTimer == nil or not menuChangeTimer.active then
         menuChangeTimer = pd.timer.new(1000, -400, 0, pd.easingFunctions.inOutCubic)
@@ -125,6 +140,7 @@ function updateMenu()
       end
     end
 
+    -- Start a level
     if pd.buttonJustPressed(pd.kButtonA) then
       initIntroVN(levels[levelUi:getSelectedRow()])
       screen = "introVN"
