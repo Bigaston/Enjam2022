@@ -1,4 +1,5 @@
 import "game/bloodDrop"
+import "vn/winVN"
 
 local pd <const> = playdate
 local gfx <const> = pd.graphics
@@ -128,6 +129,8 @@ function Player:checkCheckpoints()
                 checkpointsReached += 1
                 if checkpointsReached == numberOfCheckpoints then
                     -- WIN
+                    initWinVN()
+                    screen = "winVN"
                     return
                 end
             end

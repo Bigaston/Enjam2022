@@ -4,3 +4,4 @@ description=This is template project
 bundleID=me.bigaston.rouleaucompresseur
 version=0.0.1
 buildNumber=1
+imagePath=card.png

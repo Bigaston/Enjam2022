@@ -1,8 +1,9 @@
 [
     {
-      "text": "Didn’t you like it?", 
+      "text": "Tu n'as pas aimé ?", 
       "speed": 1,
-      "author": "UNKNOWN DEMON",
-      "image": "images/vn/normalcajou_ombre.png"
+      "author": "DEMON INCONNU",
+      "image": "images/vn/normalcajou_ombre.png",
+      "audio": "sounds/vn/normalcajou_defaite.wav"
     }
   ]

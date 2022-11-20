@@ -2,13 +2,11 @@ import "vn/dialogue"
 import "vn/background"
 import "language"
 
-local pd <const> = playdate
-
 local dialogue
 local background
 
-function initLooseVN()
-  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. currentLevel.looseDialogue)
+function initWinVN()
+  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. currentLevel.winDialogue)
   background = Background("images/vn/end_background")
 
   dialogue.skipable = false
@@ -20,12 +18,12 @@ function initLooseVN()
   end
 end
 
-function updateLooseVN()
+function updateWinVN()
   dialogue:update()
   background:update()
 end
 
-function drawLooseVN()
+function drawWinVN()
   background:draw()
   dialogue:draw()
 end

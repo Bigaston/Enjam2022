@@ -3,30 +3,35 @@
     "text": "Tiens, je me demande bien pourquoi on m'a\ndemande de venir a l'ecole un dimanche", 
     "speed": 1,
     "author": "BIGAUCHO",
-    "image": "images/vn/bigaucho_think"
+    "image": "images/vn/bigaucho_think",
+    "audio": "sounds/vn/bigaston_intro_1.wav"
   },
   {
     "text": "A part pour une gamejam de qualite certaine,\nje n'en vois pas la raison.", 
     "speed": 1,
     "author": "BIGAUCHO",
-    "image": "images/vn/bigaucho_think"
+    "image": "images/vn/bigaucho_think",
+    "audio": "sounds/vn/bigaston_intro_2.wav"
   },
   {
     "text": "RAH, RAH, RAH.",
     "speed": 2,
-    "author": "DEMON INCONNU"
+    "author": "DEMON INCONNU",
+    "audio": "sounds/vn/uwusam_intro.wav"
   },
   {
     "text": "Mais, que m'arrive-t-il ?",
     "speed": 1,
     "author": "BIGAUCHO",
-    "image": "images/vn/bigaucho_colere.png"
+    "image": "images/vn/bigaucho_colere.png",
+    "audio": "sounds/vn/bigaston_intro_3.wav"
   },
   {
     "text": "Aaaah. Je me transforme en...\nrouleau-compresseur-garou !!",
     "speed": 1,
     "author": "BIGAUCHO",
     "image": "images/vn/bigaucho_detresse",
-    "effect": "blink"
+    "effect": "blink",
+    "audio": "sounds/vn/bigaston_intro_4.wav"
   }
 ]

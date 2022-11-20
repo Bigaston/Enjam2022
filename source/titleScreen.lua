@@ -2,6 +2,8 @@ import "CoreLibs/timer"
 import "CoreLibs/easing"
 import "CoreLibs/graphics"
 
+import "audio"
+
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
@@ -36,6 +38,8 @@ function updateTitle()
   end
 
   if pd.buttonJustPressed(pd.kButtonA) then
+    Audio.playUI("buttons_navigation_click")
+
     initMenu()
     screen = "menu"
   end

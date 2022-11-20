@@ -8,6 +8,7 @@ local dialogue
 local background
 
 function initIntroVN(level)
+  currentLevel = level
   dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/intro.json")
   background = Background("images/vn/cinematic_background")
   dialogue:open()
