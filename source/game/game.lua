@@ -20,12 +20,15 @@ minimumZoneY = borderSize
 maximumZoneY = 240 - borderSize
 
 amountOfCultists = 40
-amountOfAliveCultists = amountOfCultists
 
 local playTimer = nil
 local timeToCompleteLevel = 120
 
 function initializeGame(jsonObject)
+    -- Removal of all sprites
+    gfx.sprite.removeAll()
+    amountOfAliveCultists = amountOfCultists
+
     -- Init player instance
     local playerImage = gfx.image.new("images/game/player")
     playerInstance = Player(200, 120, playerImage)
@@ -49,6 +52,8 @@ function initializeGame(jsonObject)
 end
 
 function drawGame()
+	gfx.sprite.update()
+
     drawTime()
     drawBloodJauge()
 end
@@ -63,6 +68,8 @@ function updateGame()
     
 	if playTimer.value == 0 then
 		-- LOOSE
+        initLooseVN()
+        screen = "looseVN"
 	end
 end
 

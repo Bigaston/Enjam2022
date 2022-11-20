@@ -16,7 +16,7 @@ local pd <const> = playdate
 local gfx <const> = pd.graphics
 
 -- title menu intro game
-screen = "game" --"title" -- TODO: Remettre sur title
+screen = "title" --"title" -- TODO: Remettre sur title
 
 levels = nil
 levelFiles = nil
@@ -36,6 +36,7 @@ local function loadGame()
 	end
 
 	initTitle()
+	--initGame()
 end
 
 loadGame()
@@ -44,7 +45,6 @@ function playdate.update()
 	gfx.clear()
 
 	playdate.timer.updateTimers()
-	gfx.sprite.update()
 
 	if screen == "menu" then		
 		updateMenu()
