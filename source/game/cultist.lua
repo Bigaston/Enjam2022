@@ -3,6 +3,7 @@ import "game/game"
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
+-- A cultist, the enemy of the game
 class("Cultist").extends(gfx.sprite)
 
 function Cultist:init(x, y, image)
@@ -26,6 +27,7 @@ function Cultist:init(x, y, image)
     self:setZIndex(9)
 end
 
+-- Makes a cultist stop running away
 function calmCultist(cultist)
     cultist.isScared = false
     cultist:generateRoamLocation()
@@ -55,6 +57,7 @@ end
 -- Generates a random location for the cultist to roam to, by changing x OR y by a maximum value of self.maxDeltaForRandomMovements
 function Cultist:generateRoamLocation()
     self.hasReachedLocation = false
+    -- Decides if the cultist will run horizontally or vertically
     local changeXorY = math.random(2)
     if (changeXorY == 1) then
         self.targetLocationX = self.x + self:randomInBoundsDeltaX()

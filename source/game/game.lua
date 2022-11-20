@@ -60,6 +60,7 @@ function drawGame()
     drawTime()
     drawBloodJauge()
 
+    -- Shows the crank to the player if it's docked
     if playdate.isCrankDocked() then
         playdate.ui.crankIndicator:update()
     end
@@ -102,6 +103,7 @@ end
 function spawnCultists()
     local cultistImage = gfx.image.new("images/game/cultist")
 
+    -- For each cultist
     for i = 1, amountOfCultists, 1 do
         local spawnX = 200
         local spawnY = 120
@@ -121,6 +123,7 @@ function getPlayerPosition()
     return playerInstance:getPosition()
 end
 
+-- Draws the time left and a border
 function drawTime()
 	gfx.setColor(gfx.kColorWhite)
 	gfx.fillRoundRect(2, 2, 48, 19, 2)
@@ -132,6 +135,7 @@ function drawTime()
 	gfx.drawText(math.floor(playTimer.value), 24, 4)
 end
 
+-- Draws the amount of blood the player has and a border
 function drawBloodJauge()
 	gfx.setColor(gfx.kColorWhite)
 	gfx.fillRoundRect(340, 2, 70, 20, 2)
