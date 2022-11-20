@@ -76,16 +76,20 @@ function Player:manageMovement()
     end
     
     -- Check if the player will be out of bounds, don't move if true
-    if (x - self:getSize()/2 > minimumZoneX and x + self:getSize()/2 < maximumZoneX 
-        and y - self:getSize()/2 > minimumZoneY and y + self:getSize()/2 < maximumZoneY) then
-        local actualX, actualY, collisions, length = self:moveWithCollisions(x, y)
-        self.x = actualX
-        self.y = actualY
+    if not (x - self:getSize()/2 > minimumZoneX and x + self:getSize()/2 < maximumZoneX) then
+        x = self.x
+    end
+    if not (y - self:getSize()/2 > minimumZoneY and y + self:getSize()/2 < maximumZoneY) then
+        y = self.y
+    end
 
+    local actualX, actualY, collisions, length = self:moveWithCollisions(x, y)
+    self.x = actualX
+    self.y = actualY
 
-        if length>0 then 
-            self:manageKills(collisions)
-        end
+    -- If there was collisions
+    if length>0 then 
+        self:manageKills(collisions)
     end
 end
 
