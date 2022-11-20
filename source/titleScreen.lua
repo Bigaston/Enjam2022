@@ -57,4 +57,5 @@ function drawTitle()
   end
 
   bigauchoImage:draw(5, yBigaucho)
+  gfx.drawText(playdate.metadata.version, 360, 220)
 end
