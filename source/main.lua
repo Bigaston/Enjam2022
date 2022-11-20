@@ -33,7 +33,7 @@ function playdate.update()
 	elseif screen == "title" then
 		updateTitle()
 		drawTitle()
-	elseif screen == "intro" then
+	elseif screen == "vn" then
 		updateVN()
 		drawVN()
 	elseif screen == "game" then

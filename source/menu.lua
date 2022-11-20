@@ -19,6 +19,9 @@ local menuDifferentY = 0
 local selectorImg = gfx.image.new("images/menu/selector")
 local leftRightImg = gfx.image.new("images/menu/leftright")
 
+local levels
+local levelFiles
+
 function initMenu()
   menuUi = pd.ui.gridview.new(350, 32)
 
@@ -41,8 +44,8 @@ function initMenu()
     end
   end
 
-  local levelFiles = pd.file.listFiles("levels")
-  local levels = {}
+  levelFiles = pd.file.listFiles("levels")
+  levels = {}
 
   for i = 1, #levelFiles, 1 do
     levels[i] = json.decodeFile("levels/" .. levelFiles[i])
@@ -112,6 +115,11 @@ function updateMenu()
           menuScreen = "base"
         end
       end
+    end
+
+    if pd.buttonJustPressed(pd.kButtonA) then
+      initVN(levelFiles[levelUi:getSelectedRow()])
+      screen = "vn"
     end
   end
 end
