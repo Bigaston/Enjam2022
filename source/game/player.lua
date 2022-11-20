@@ -85,6 +85,7 @@ function Player:manageKills(collisions)
             splashSprite:moveTo(collidedObject.x, collidedObject.y)
             splashSprite:add()
             collidedObject:remove()
+            amountOfAliveCultists -= 1
             self:gainBlood()
         end
     end
@@ -126,7 +127,7 @@ function Player:checkCheckpoints()
                 collidedObject.active = false
                 checkpointsReached += 1
                 if checkpointsReached == numberOfCheckpoints then
-                    gameIsWon = true
+                    -- WIN
                     return
                 end
             end

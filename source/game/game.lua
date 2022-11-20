@@ -11,7 +11,6 @@ import "game/bloodCheckpoint"
 local gfx <const> = playdate.graphics
 numberOfCheckpoints = 0
 checkpointsReached = 0
-gameIsWon = false
 
 borderSize = 2
 minimumZoneX = borderSize
@@ -20,8 +19,9 @@ minimumZoneY = borderSize
 maximumZoneY = 240 - borderSize
 
 amountOfCultists = 40
+amountOfAliveCultists = amountOfCultists
 
-function initializeGame(level)
+function initializeGame(jsonObject)
     -- Init player instance
     local playerImage = gfx.image.new("images/game/player")
     playerInstance = Player(200, 120, playerImage)
@@ -37,7 +37,7 @@ function initializeGame(level)
     )
 
     -- Init level
-    initLevel(level)
+    initLevel(jsonObject)
 
     spawnCultists()
 end
@@ -47,11 +47,12 @@ function drawGame()
 end
 
 function updateGame()
+    if playerInstance.currentBloodPool == 0 and amountOfAliveCultists == 0 then
+        -- LOOSE
+    end
 end
 
-function initLevel(level)
-    local jsonObject = json.decodeFile(level)
-
+function initLevel(jsonObject)
     -- Load background pentacle
     local levelImage = gfx.image.new(jsonObject.backgroundImage)
     local pentacleSprite = Pentacle(levelImage)
