@@ -3,18 +3,21 @@
       "text": "Miaou-argh-ou.", 
       "speed": 1,
       "audio": "",
-      "author": "NEKODORIAN"
+      "author": "NEKODORIAN",
+      "image": "images/vn/nekodorian_triste.png"
     },
     {
         "text": "Qui va me fournir en saumon fume maintenant ?", 
         "speed": 1,
         "audio": "",
-        "author": "NEKODORIAN"
+        "author": "NEKODORIAN",
+        "image": "images/vn/nekodorian_triste.png"
     },
     {
         "text": "Ok, si tu vas m’en chercher, je te\nrends tes jambes, on fait ça ?", 
         "speed": 1,
         "audio": "",
-        "author": "NEKODORIAN"
+        "author": "NEKODORIAN",
+        "image": "images/vn/nekodorian_mignon.png"
      }
   ]
