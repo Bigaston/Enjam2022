@@ -7,6 +7,9 @@ local background
 
 -- The VN part used when you win the game
 function initWinVN()
+  Save.newLevelWin(currentLevel.levelName)
+  playdate.stopAccelerometer()
+
   dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. currentLevel.winDialogue)
   background = Background("images/vn/end_background")
 
