@@ -109,6 +109,11 @@ function updateMenu()
       Audio.playUI("buttons_navigation_up")
     end
 
+    if pd.buttonJustPressed(pd.kButtonB) and not menuChangeTimer.active then
+      initTitle()
+      screen = "title"
+    end
+
     -- Go to the next screen
     if menuUi:getSelectedRow() == 1 and (pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight)) then
       if menuChangeTimer == nil or not menuChangeTimer.active then

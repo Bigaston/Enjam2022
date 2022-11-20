@@ -53,6 +53,15 @@ function initializeGame(jsonObject)
 
     -- Setup the crank ui indicator
     playdate.ui.crankIndicator:start()
+
+    -- Add a get back to level menu item
+    local menu = playdate.getSystemMenu()
+
+    menu:addMenuItem(Language.getString("game.backtomenu"), function ()
+        initMenu()
+        menu:removeAllMenuItems()
+        screen = "menu"
+    end)
 end
 
 function drawGame()

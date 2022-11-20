@@ -1,4 +1,4 @@
-local lang = "fr" -- current language, fr/en
+local lang = "en" -- current language, fr/en
 local displayLang = { -- The display name of the languages
   fr = "Francais",
   en = "English"

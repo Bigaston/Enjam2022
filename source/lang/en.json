@@ -5,5 +5,6 @@
   "menu.timer": "Timer",
   "menu.onehand": "One Hand Mode",
   "menu.disabled": "Disabled",
-  "menu.enabled": "Enabled"
+  "menu.enabled": "Enabled",
+  "game.backtomenu": "level select"
 }
