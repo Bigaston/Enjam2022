@@ -81,7 +81,6 @@ function updateGame()
 end
 
 function initLevel(jsonObject)
-    printTable(jsonObject)
     -- Load background pentacle
     local levelImage = gfx.image.new(jsonObject.backgroundImage)
     local pentacleSprite = Pentacle(levelImage)
