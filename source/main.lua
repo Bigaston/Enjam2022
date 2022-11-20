@@ -25,7 +25,7 @@ currentLevel = nil
 local function loadGame()
 	Language.init()
 	Audio.init()
-	
+
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 
 	levelFiles = pd.file.listFiles("levels")
@@ -36,6 +36,7 @@ local function loadGame()
 	end
 
 	initTitle()
+
 	--initGame()
 end
 
@@ -43,7 +44,8 @@ loadGame()
 
 function playdate.update()
 	gfx.clear()
-
+	Audio.playMusic()
+	
 	playdate.timer.updateTimers()
 
 	if screen == "menu" then		
