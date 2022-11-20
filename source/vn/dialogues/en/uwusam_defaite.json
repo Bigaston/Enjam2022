@@ -3,6 +3,7 @@
       "text": "Tu vas devoir rester avec moi, quel dommage...", 
       "speed": 1,
       "author": "DEMON INCONNU",
-      "image": "images/vn/uwusam_ombre.png"
+      "image": "images/vn/uwusam_ombre.png",
+      "audio": "sounds/vn/uwusam_defaite.wav"
     }
   ]

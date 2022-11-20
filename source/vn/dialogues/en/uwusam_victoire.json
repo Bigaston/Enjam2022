@@ -3,20 +3,23 @@
       "text": "Je suis desole, je ne voulais pas paraitre impoli.", 
       "speed": 1,
       "author": "UWUSAM",
-      "image": "images/vn/uwusam_mignon.png"
+      "image": "images/vn/uwusam_mignon.png",
+      "audio": "sounds/vn/uwusam_victoire_1.wav"
     },
     {
         "text": "Mais tu as decime ma secte alors\nje pense que tu es le pire ici.", 
         "speed": 1,
         "author": "UWUSAM",
         "image": "images/vn/uwusam_determine.png",
-        "effect": "blink"
+        "effect": "blink",
+        "audio": "sounds/vn/uwusam_victoire_2.wav"
     },
     {
         "text": "Degage tant qu’il est encore temps !", 
         "speed": 1,
         "author": "UWUSAM",
         "image": "images/vn/uwusam_determine.png",
-        "effect": "invert"
+        "effect": "invert",
+        "audio": "sounds/vn/uwusam_victoire_3.wav"
     }
   ]

@@ -3,19 +3,22 @@
       "text": "Was this violence really necessary?", 
       "speed": 1,
       "author": "NORMALCAJOU",
-      "image": "images/vn/cajou_impassable.png"
+      "image": "images/vn/cajou_impassable.png",
+      "audio": "sounds/vn/normalcajou_victoire_1.wav"
     },
     {
         "text": "You primitive animal, I offered you a gift\nand this is how you thank me.", 
         "speed": 1,
         "author": "NORMALCAJOU",
         "image": "images/vn/cajou_condescendante.png",
-        "effect": "invert"
+        "effect": "invert",
+        "audio": "sounds/vn/normalcajou_victoire_2.wav"
     },
     {
         "text": "But I get it, you didn’t want it so I’m\ntaking it back. You can go.", 
         "speed": 1,
         "author": "NORMALCAJOU",
-        "image": "images/vn/cajou_impassable.png"
+        "image": "images/vn/cajou_impassable.png",
+        "audio": "sounds/vn/normalcajou_victoire_3.wav"
     }
   ]
