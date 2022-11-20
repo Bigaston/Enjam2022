@@ -2,13 +2,11 @@ import "vn/dialogue"
 import "vn/background"
 import "language"
 
-local pd <const> = playdate
-
 local dialogue
 local background
 
-function initWinVN(level)
-  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. level.winDialogue)
+function initWinVN()
+  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. currentLevel.winDialogue)
   background = Background("images/vn/end_background")
 
   dialogue.skipable = false

@@ -7,8 +7,8 @@ local pd <const> = playdate
 local dialogue
 local background
 
-function initLooseVN(level)
-  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. level.looseDialogue)
+function initLooseVN()
+  dialogue = Dialogue.loadDialogueFromJSON("vn/dialogues/" .. Language.getLang() .. "/" .. currentLevel.looseDialogue)
   background = Background("images/vn/end_background")
 
   dialogue.skipable = false
