@@ -1,6 +1,7 @@
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
+-- A bloodcheckpoint class, used to define waypoints that has to be painted with blood by the player
 class("BloodCheckpoint").extends(gfx.sprite)
 
 function BloodCheckpoint:init(x, y, image)
@@ -11,6 +12,6 @@ function BloodCheckpoint:init(x, y, image)
     self:moveTo(self.x, self.y)
     self.currentImage = image
     self:setImage(image)
-    self:setCollideRect(-5, -5, 10, 10)
+    self:setCollideRect(-2, -2, 4, 4)
     self:setZIndex(5)
 end
