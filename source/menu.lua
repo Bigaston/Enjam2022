@@ -70,11 +70,13 @@ function updateMenu()
     end
 
     if menuUi:getSelectedRow() == 1 and (pd.buttonIsPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight)) then
-      menuChangeTimer = pd.timer.new(1000, 0, -400, pd.easingFunctions.inOutCubic)
-      levelUi:setSelectedRow(1)
+      if menuChangeTimer == nil or not menuChangeTimer.active then
+        menuChangeTimer = pd.timer.new(1000, 0, -400, pd.easingFunctions.inOutCubic)
+        levelUi:setSelectedRow(1)
 
-      function menuChangeTimer:timerEndedCallback()
-        menuScreen = "level"
+        function menuChangeTimer:timerEndedCallback()
+          menuScreen = "level"
+        end
       end
     end
 
@@ -95,11 +97,13 @@ function updateMenu()
     end
 
     if pd.buttonJustPressed(pd.kButtonB) or pd.buttonJustPressed(pd.kButtonLeft) then
-      menuChangeTimer = pd.timer.new(1000, -400, 0, pd.easingFunctions.inOutCubic)
-      menuUi:setSelectedRow(1)
+      if menuChangeTimer == nil or not menuChangeTimer.active then
+        menuChangeTimer = pd.timer.new(1000, -400, 0, pd.easingFunctions.inOutCubic)
+        menuUi:setSelectedRow(1)
 
-      function menuChangeTimer:timerEndedCallback()
-        menuScreen = "base"
+        function menuChangeTimer:timerEndedCallback()
+          menuScreen = "base"
+        end
       end
     end
   end

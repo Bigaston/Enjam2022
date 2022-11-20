@@ -12,13 +12,13 @@ import "menu"
 local gfx <const> = playdate.graphics
 
 -- title menu intro game
-screen = "menu" --"title" -- TODO: Remettre sur title
+screen = "title" --"title" -- TODO: Remettre sur title
 
 local function loadGame()
 	Language.init()
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
-	-- initTitle()
-	initMenu() -- TODO: Degager ça
+	initTitle()
+	-- initMenu() -- TODO: Degager ça
 end
 
 loadGame()
@@ -27,12 +27,12 @@ function playdate.update()
 	playdate.timer.updateTimers()
   gfx.clear()
 
-	if screen == "title" then
-		updateTitle()
-		drawTitle()
-	elseif screen == "menu" then
+	if screen == "menu" then		
 		updateMenu()
 		drawMenu()
+	elseif screen == "title" then
+		updateTitle()
+		drawTitle()
 	elseif screen == "intro" then
 		updateVN()
 		drawVN()
