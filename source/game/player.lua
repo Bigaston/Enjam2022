@@ -131,6 +131,7 @@ function Player:checkCheckpoints()
             if collidedObject.active == true then
                 collidedObject.active = false
                 checkpointsReached += 1
+                Audio.playGameSound("checkpoint_passed")
                 if checkpointsReached == numberOfCheckpoints then
                     -- WIN
                     initWinVN()
