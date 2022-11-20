@@ -3,6 +3,7 @@ import "CoreLibs/object"
 local pd <const> = playdate
 local gfx <const> = pd.graphics
 
+-- Draw the background for VN parts
 class("Background").extends()
 
 function Background:init(imagePath)
@@ -14,6 +15,7 @@ function Background:init(imagePath)
   self.width = self.image:getSize()
 end
 
+-- Update the position based on sin
 function Background:update()
   self.x = (math.sin(pd.getCurrentTimeMilliseconds()/3000) * ((self.width - 400) / 2)) - (self.width - 400) / 2
 end

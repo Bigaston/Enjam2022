@@ -15,6 +15,7 @@ local yText = 180
 local bigauchoImage
 local blinkText = 20
 
+-- Title screen of the game
 function initTitle()
   logo = gfx.image.new("images/menu/logo")
   bigauchoImage = gfx.image.new("images/vn/bigaucho_detresse")
@@ -22,22 +23,25 @@ function initTitle()
 end
 
 function updateTitle()
+  -- Animation of the logo of the game
   if timer.active then
     yTitle = timer.value
   else
     yTitle = 5 - math.sin(pd.getCurrentTimeMilliseconds()/1000) * 2
   end
 
+  -- Update the position with sin
   yBigaucho = 100 - math.sin(pd.getCurrentTimeMilliseconds()/500) * 3
   yText = 180 - math.sin(pd.getCurrentTimeMilliseconds()/200) * 3
 
   blinkText -= 1
 
+  -- made the "START THE GAME" button blink
   if blinkText == -10 then
     blinkText = 20
   end
 
-  if pd.buttonJustPressed(pd.kButtonA) then
+  if pd.buttonJustPressed(pd.kButtonA) or pd.buttonJustPressed(pd.kButtonRight) then
     Audio.playUI("buttons_navigation_click")
 
     initMenu()
