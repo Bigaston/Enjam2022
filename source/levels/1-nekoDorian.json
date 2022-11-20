@@ -4,7 +4,7 @@
  [96,65], [119,74], [145,85], [91,110], [105,125],
  [273,86], [293,73], [321,59], [344,45], [369,33], [373,44], [365,73], [355,101], [346,124],
  [337,148], [330,173], [297,123], [311,109]],
-  "backgroundImage": "levels/1-nekoDorian",
+  "backgroundImage": "images/levels/1-nekoDorian",
   "winDialogue": "",
   "looseDialogue": "",
   "difficulty": 0

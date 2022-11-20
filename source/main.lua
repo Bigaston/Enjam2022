@@ -14,7 +14,7 @@ screen = "game"
 local function loadGame()
 	math.randomseed(playdate.getSecondsSinceEpoch()) -- seed for math.random
 	initTitle()
-	initializeGame("nekoLevel")
+	initializeGame("levels/1-nekoDorian.json")
 end
 
 loadGame()
