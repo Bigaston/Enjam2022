@@ -49,6 +49,9 @@ function initializeGame(jsonObject)
     playTimer = playdate.timer.new(timeToCompleteLevel * 1000, timeToCompleteLevel, 0)
 
     spawnCultists()
+
+    -- Setup the crank ui indicator
+    playdate.ui.crankIndicator:start()
 end
 
 function drawGame()
@@ -56,6 +59,10 @@ function drawGame()
 
     drawTime()
     drawBloodJauge()
+
+    if playdate.isCrankDocked() then
+        playdate.ui.crankIndicator:update()
+    end
 end
 
 function updateGame()
@@ -74,7 +81,6 @@ function updateGame()
 end
 
 function initLevel(jsonObject)
-    printTable(jsonObject)
     -- Load background pentacle
     local levelImage = gfx.image.new(jsonObject.backgroundImage)
     local pentacleSprite = Pentacle(levelImage)
