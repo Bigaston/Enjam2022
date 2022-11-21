@@ -6,15 +6,15 @@ on:
     branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
-
-env:
-  # Change if the SDK Version change (from the downloaded version
-  SOURCE_FOLDER: ./source
-  PLAYDATE_SDK_PATH: ${{ env.GITHUB_ACTION_PATH }}/PlaydateSDK-1.12.3
   
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+      # Change if the SDK Version change (from the downloaded version
+      SOURCE_FOLDER: ./source
+      PLAYDATE_SDK_PATH: ${{ env.GITHUB_ACTION_PATH }}/PlaydateSDK-1.12.3
 
     steps:
       - uses: actions/checkout@v3
