@@ -3,15 +3,14 @@ name: PlayDate Build
 on:
   push:
   # Change this if your main branch is master
-    branches: [ "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 env:
   # Change if the SDK Version change (from the downloaded version
-  PLAYDATE_SDK_FOLDER: PlaydateSDK-1.12.3
-  # Change if your game is not on the source folder
   SOURCE_FOLDER: ./source
+  PLAYDATE_SDK_PATH: ${{ env.GITHUB_ACTION_PATH }}/PlaydateSDK-1.12.3
   
 jobs:
   build:
@@ -38,7 +37,7 @@ jobs:
       - name: Build PlayDate Game
         env:
           NAME: ${{ steps.metadata.outputs.name }}
-        run: ./$PLAYDATE_SDK_FOLDER/bin/pdc ./$SOURCE_FOLDER ./$NAME.pdx
+        run: $PLAYDATE_SDK_PATH/bin/pdc ./$SOURCE_FOLDER ./$NAME.pdx
       - name: Zip File
         env:
           NAME: ${{ steps.metadata.outputs.name }}
