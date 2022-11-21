@@ -38,7 +38,7 @@ jobs:
       - name: Build PlayDate Game
         env:
           NAME: ${{ steps.metadata.outputs.name }}
-        run: ./$PLAYDATE_SDK_FOLDER/bin/pdc ./$SOURCE_FOLDER ./$NAME.pdx
+        run: ./$PLAYDATE_SDK_FOLDER/bin/pdc $SOURCE_FOLDER ./$NAME.pdx
       - name: Zip File
         env:
           NAME: ${{ steps.metadata.outputs.name }}
