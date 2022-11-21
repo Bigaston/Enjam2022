@@ -22,6 +22,7 @@ function Cultist:init(x, y, image)
     self.distanceToBeScared = 60
     self.distanceToBeCalmAfterFear = 100
     self.speed = 1
+    self.speedToFlee = 1.5
     self.maxDeltaForRandomMovements = 10
     self:setCollideRect(0, 0, self:getSize())
     self:setZIndex(9)
@@ -36,10 +37,14 @@ end
 function Cultist:update()
     -- Checking if the cultist is scared
     local playerX, playerY = getPlayerPosition()
-    if math.sqrt((playerX-self.x)^2 + (playerY-self.y)^2) <= self.distanceToBeScared then
+    local playerDistanceX = playerX-self.x
+    local playerDistanceY = playerY-self.y
+
+    if math.sqrt((playerDistanceX)^2 + (playerDistanceY)^2) <= self.distanceToBeScared then
         self.isScared = true
-    elseif math.sqrt((playerX-self.x)^2 + (playerY-self.y)^2) > self.distanceToBeCalmAfterFear then
+    elseif self.isScared and math.sqrt((playerDistanceX)^2 + (playerDistanceY)^2) > self.distanceToBeCalmAfterFear then
         self.isScared = false
+        self:generateRoamLocation()
     end
 
     if self.isScared then
@@ -57,15 +62,8 @@ end
 -- Generates a random location for the cultist to roam to, by changing x OR y by a maximum value of self.maxDeltaForRandomMovements
 function Cultist:generateRoamLocation()
     self.hasReachedLocation = false
-    -- Decides if the cultist will run horizontally or vertically
-    local changeXorY = math.random(2)
-    if (changeXorY == 1) then
-        self.targetLocationX = self.x + self:randomInBoundsDeltaX()
-        self.targetLocationY = self.y
-    else
-        self.targetLocationX = self.x
-        self.targetLocationY = self.y + self:randomInBoundsDeltaY()
-    end
+    self.targetLocationX = self.x + self:randomInBoundsDeltaX()
+    self.targetLocationY = self.y + self:randomInBoundsDeltaY()
 end
 
 -- Run away from the player
@@ -73,46 +71,38 @@ function Cultist:runAway(playerX, playerY)
     local directionToFleeX = self.x - playerX
     local directionToFleeY = self.y - playerY
 
-    local normalizedX = 0
-    local normalizedY = 0
-
-    -- Normalize x and y
-    if (directionToFleeX ~= 0) then
-        normalizedX = (directionToFleeX)/math.abs(directionToFleeX)
-    end
-    if (directionToFleeY ~= 0) then
-        normalizedY = (directionToFleeY)/math.abs(directionToFleeY)
-    end
+    -- Normalizes the movement
+    local xToMove = (directionToFleeX) / math.sqrt(directionToFleeX^2 + directionToFleeY^2) 
+    local yToMove = (directionToFleeY) / math.sqrt(directionToFleeX^2 + directionToFleeY^2) 
 
     -- Checks if the movement is in bounds
-    if self.x + normalizedX * self.speed > maximumZoneX or self.x + normalizedX * self.speed < minimumZoneX then
-        normalizedX = 0
+    if self.x + xToMove * self.speedToFlee > maximumZoneX or self.x + xToMove * self.speedToFlee < minimumZoneX then
+        xToMove = 0
     end
-    if self.y + normalizedY * self.speed > maximumZoneY or self.y + normalizedY * self.speed < minimumZoneY then
-        normalizedY = 0
+    if self.y + yToMove * self.speedToFlee > maximumZoneY or self.y + yToMove * self.speedToFlee < minimumZoneY then
+        yToMove = 0
     end
-    self:moveBy(normalizedX * self.speed, normalizedY * self.speed)
+
+    -- Moves
+    self:moveBy(xToMove * self.speedToFlee, yToMove * self.speedToFlee)
 end
 
 -- Moves to targetLocation and checks if the cultists has reached the location
 function Cultist:roamToTarget()
-    local normalizedX = 0
-    local normalizedY = 0
-
-    -- Normalize x and y
-    if (self.targetLocationX-self.x ~= 0) then
-        normalizedX = (self.targetLocationX-self.x)/math.abs(self.targetLocationX-self.x)
-    elseif (self.targetLocationY-self.y ~= 0) then
-        normalizedY = (self.targetLocationY-self.y)/math.abs(self.targetLocationY-self.y)
-    end
-
-    -- Apply the movespeed to the normalized vector on x or y
-    self:moveBy(normalizedX * self.speed, normalizedY * self.speed)
+    local directionX = self.targetLocationX-self.x
+    local directionY = self.targetLocationY-self.y
 
     -- If close enough 
-    if math.abs(self.targetLocationX-self.x) < self.speed and math.abs(self.targetLocationY-self.y) < self.speed then
+    if math.abs(directionX) < self.speed and math.abs(directionY) < self.speed then
         self.hasReachedLocation = true
+        return
     end
+
+    local xToMove = (directionX) / math.sqrt(directionX^2 + directionY^2) 
+    local yToMove = (directionY) / math.sqrt(directionX^2 + directionY^2) 
+
+    -- Apply the movespeed to the normalized vector on x or y
+    self:moveBy(xToMove * self.speed, yToMove * self.speed)
 end
 
 -- Careful! self.x has to already be in bound or infinite loop
