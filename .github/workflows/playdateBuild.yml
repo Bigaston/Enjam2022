@@ -29,7 +29,7 @@ jobs:
           echo "name=$NAME" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "release=$RELEASE" >> $GITHUB_OUTPUT
-          echo "PLAYDATE_SDK_FOLDER=${{ env.GITHUB_ACTION_PATH }}/$PLAYDATE_SDK_FOLDER" >> $GITHUB_ENV
+          echo "PLAYDATE_SDK_FOLDER=${{ env.GITHUB_WORKSPACE }}/$PLAYDATE_SDK_FOLDER" >> $GITHUB_ENV
 
       - name: Install PlayDate SDK
         run: |
