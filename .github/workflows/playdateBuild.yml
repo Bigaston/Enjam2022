@@ -14,7 +14,7 @@ jobs:
     env:
       # Change if the SDK Version change (from the downloaded version
       SOURCE_FOLDER: ./source
-      PLAYDATE_SDK_PATH: ${{ GITHUB_ACTION_PATH }}/PlaydateSDK-1.12.3
+      PLAYDATE_SDK_FOLDER: PlaydateSDK-1.12.3
 
     steps:
       - uses: actions/checkout@v3
@@ -29,6 +29,7 @@ jobs:
           echo "name=$NAME" >> $GITHUB_OUTPUT
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "release=$RELEASE" >> $GITHUB_OUTPUT
+          echo "PLAYDATE_SDK_FOLDER=$GITHUB_ACTION_PATH/$PLAYDATE_SDK_FOLDER" >> $GITHUB_ENV
 
       - name: Install PlayDate SDK
         run: |
