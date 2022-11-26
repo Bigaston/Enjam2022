@@ -49,5 +49,5 @@ jobs:
         with:
           artifacts: "./${{ steps.metadata.outputs.release }}"
           allowUpdates: true
-          name: ${{ steps.metadata.outputs.name }} ${{ steps.metadata.outputs.version }}
+          name: V${{ steps.metadata.outputs.version }}
           tag: ${{ steps.metadata.outputs.version }}
